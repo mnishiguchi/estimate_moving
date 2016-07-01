@@ -11,7 +11,7 @@
 
 FactoryGirl.define do
   factory :item_tag do
-    household_item nil
-    tag nil
+    household_item
+    tag
   end
 end

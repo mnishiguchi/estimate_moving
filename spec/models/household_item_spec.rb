@@ -15,5 +15,12 @@
 require 'rails_helper'
 
 RSpec.describe HouseholdItem, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:household_item) { FactoryGirl.create(:household_item) }
+
+  it { expect(household_item).to be_valid }
+
+  it { is_expected.to validate_presence_of :name }
+  it { is_expected.to validate_presence_of :volume }
+  it { is_expected.to validate_presence_of :quantity }
+  it { is_expected.to_not validate_presence_of :description }
 end

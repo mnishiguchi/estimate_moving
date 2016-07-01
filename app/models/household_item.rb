@@ -14,7 +14,12 @@
 
 class HouseholdItem < ApplicationRecord
   belongs_to :moving
-  
+
   has_many :item_tags, dependent: :destroy
   has_many :tags, through: :item_tags
+
+  validates :name, presence: true
+  validates :volume, presence: true
+  validates :quantity, presence: true
+  validates :description, length: { maximum: 255 }
 end

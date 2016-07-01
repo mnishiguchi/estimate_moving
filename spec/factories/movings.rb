@@ -12,8 +12,8 @@
 
 FactoryGirl.define do
   factory :moving do
-    name "MyString"
-    description "MyText"
-    user nil
+    name "My moving to a nice apartment"
+    description "Location is DC"
+    user
   end
 end

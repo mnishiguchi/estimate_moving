@@ -58,7 +58,7 @@ group :test do
   gem "poltergeist"
   gem 'launchy'
   gem 'selenium-webdriver'
-  gem 'shoulda-matchers', require: false
+  gem 'shoulda-matchers'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

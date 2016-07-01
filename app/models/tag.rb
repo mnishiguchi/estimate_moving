@@ -11,4 +11,6 @@
 class Tag < ApplicationRecord
   has_many :item_tags, dependent: :destroy
   has_many :household_items, through: :item_tags
+
+  validates :name, presence: true
 end

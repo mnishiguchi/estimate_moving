@@ -50,4 +50,4 @@ moving.household_items.create!([
 # Create tags on household_items
 HouseholdItem.all.each do |item|
   item.tags.create name: FFaker::Lorem.word
-endga
+end

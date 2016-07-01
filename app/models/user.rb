@@ -19,7 +19,7 @@
 #
 
 class User < ApplicationRecord
-  has_many :movings
+  has_many :movings, dependent: :destroy
   # has_many :social_profiles
 
   # Include default devise modules. Others available are:

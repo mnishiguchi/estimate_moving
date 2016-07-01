@@ -12,5 +12,8 @@
 
 class Moving < ApplicationRecord
   belongs_to :user
-  has_many :household_items
+  has_many   :household_items, dependent: :destroy
+
+  validates :name, presence: true
+  validates :description, length: { maximum: 255 }
 end

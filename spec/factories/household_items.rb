@@ -14,8 +14,10 @@
 
 FactoryGirl.define do
   factory :household_item do
-    name "MyString"
-    description "MyText"
-    moving nil
+    name "Armchair"
+    description "Very comfortable"
+    volume 30
+    quantity 1
+    moving
   end
 end
