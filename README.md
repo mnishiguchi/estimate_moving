@@ -4,14 +4,18 @@
 - Perfect for preparing house moving.
 - Easy to use on mobile devices as well as on larger devices.
 
-## Wireframe
+---
+
+## Planning
+
+#### Wireframe
 
 ![](images/erd_planning.jpg)
 ![](images/wf_movings_index.jpg)
 ![](images/wf_movings_show.jpg)
 ![](images/wf_household_items_new.jpg)
 
-## User story
+#### User story
 
 ```yaml
 Bronze:
@@ -49,7 +53,7 @@ Gold:
 
 ---
 
-## Set up
+## Set up gems
 
 #### rspec
 
@@ -77,6 +81,7 @@ $ rails generate simple_form:install --bootstrap
 ```
 
 #### devise
+- [wiki](http://devise.plataformatec.com.br/#the-devise-wiki)
 
 ```
 $ rails generate devise:install
@@ -84,3 +89,25 @@ $ rails generate devise User
 $ rails generate devise:views
 $ rails db:migrate
 ```
+
+[Create a username field in the users table](https://github.com/plataformatec/devise/wiki/How-To:-Allow-users-to-sign-in-using-their-username-or-email-address#create-a-username-field-in-the-users-table)
+---
+
+## Set up database
+
+```
+rails g model Moving name description:text user:references
+rails g model HouseholdItem name description:text moving:references
+rails g model Tag name
+rails g model ItemTag household_item:references tag:references
+```
+
+![](erd.jpg)
+
+---
+
+## Troubleshooting
+
+---
+
+## References

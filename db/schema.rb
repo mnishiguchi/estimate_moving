@@ -10,10 +10,45 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160701172608) do
+ActiveRecord::Schema.define(version: 20160701183718) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "household_items", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "volume"
+    t.integer  "quantity"
+    t.text     "description"
+    t.integer  "moving_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["moving_id"], name: "index_household_items_on_moving_id", using: :btree
+  end
+
+  create_table "item_tags", force: :cascade do |t|
+    t.integer  "household_item_id"
+    t.integer  "tag_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.index ["household_item_id"], name: "index_item_tags_on_household_item_id", using: :btree
+    t.index ["tag_id"], name: "index_item_tags_on_tag_id", using: :btree
+  end
+
+  create_table "movings", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["user_id"], name: "index_movings_on_user_id", using: :btree
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -28,8 +63,14 @@ ActiveRecord::Schema.define(version: 20160701172608) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "username"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+    t.index ["username"], name: "index_users_on_username", unique: true, using: :btree
   end
 
+  add_foreign_key "household_items", "movings"
+  add_foreign_key "item_tags", "household_items"
+  add_foreign_key "item_tags", "tags"
+  add_foreign_key "movings", "users"
 end
