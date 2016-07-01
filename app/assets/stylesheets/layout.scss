@@ -1,0 +1,100 @@
+body {
+  background-color: $body-bg;
+}
+
+main {
+  min-height: 80vh;
+}
+
+#logo {
+  float: left;
+  margin-right: 10px;
+  font-size: 2.5rem;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: -2px;
+  margin: 0 1rem 0 0;
+  padding: 1.5rem 0;
+  font-weight: bold;
+  &:hover {
+    color: white;
+    text-decoration: none;
+  }
+}
+
+// Override BS navbar's styles.
+.navbar-inverse .navbar-nav > li > a {
+  color: $gray-2;
+  transition: all 0.4s ease;
+  &:hover {
+    color: white;
+    background-color: rgba(255,255,255,.1);
+  }
+}
+
+nav.navbar.navbar-inverse {
+  background-color: $header-color;
+  font-family: $heading-font-family;
+}
+
+.pagination {
+  border: 1px solid $link-hover-color;
+  background-color: $link-hover-color
+}
+
+footer {
+  font-family: $heading-font-family;
+  vertical-align: middle;
+  margin-top: 4rem;
+  padding: 4rem 0;
+  color: $gray-2;
+  background: $header-color;
+  .contact-info {
+    display: inline-block;
+    padding: 0 5px;
+  }
+  .social-links {
+    display: inline-block;
+    float: right;
+    font-size: 1.0em;
+    a {
+      color:inherit;
+      margin: 0 .5rem;
+      color: $link-hover-color;
+    }
+    a:hover {
+      text-decoration: none;
+      color: white;
+    }
+  }
+}
+
+.jumbotron {
+  background-color: $jumbotron-background;
+}
+
+// Override BS3.
+.btn {
+  border-radius: 1px;
+  .btn-primary {
+    color: #fff;
+    background-color: $blue-darker;
+    border-color: $blue-darker;
+  }
+}
+.form-horizontal .form-group {
+  margin-left: 0;
+  margin-right: 0;
+}
+.form-control {
+  border-radius: 0;
+}
+
+.user_info {
+  padding: 1rem 0;
+  img {
+    margin-right: 2rem;
+    border-radius: 4px;
+    border: 3px solid white;
+  }
+}

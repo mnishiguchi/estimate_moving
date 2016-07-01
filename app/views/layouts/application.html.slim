@@ -1,0 +1,23 @@
+doctype html
+html
+  head
+    meta [content="text/html" charset="UTF-8", http-equiv="Content-Type"]
+    meta [name="viewport" content="width=device-width, initial-scale=1.0"]
+
+    title= full_title(yield(:title))
+    
+    = stylesheet_link_tag 'application', media: 'all', \
+                                            'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+    /[if lt IE 9]
+      script [src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js"]
+  body
+    = render 'layouts/site_header'
+    .container
+      = render 'layouts/user_info' if current_user
+      = render 'layouts/flash_message'
+      main
+        = yield
+    = render 'layouts/site_footer'
+    = render 'layouts/debug_box'

@@ -1,0 +1,20 @@
+nav.navbar.navbar-inverse.navbar-static-top
+  .container
+    .navbar-header
+      button.navbar-toggle.collapsed[type="button" data={toggle: 'collapse', target: '#hamburger'}]
+        span.sr-only Navigation toggle
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      = link_to "Estimate Moving", root_path, id: 'logo', class: 'navbar-brand'
+
+    nav.collapse.navbar-collapse#hamburger
+      ul.nav.navbar-nav.navbar-right
+        - if user_signed_in?
+          li= link_to fa_icon("fw cog", text: "Settings"), edit_user_registration_path
+          li= link_to fa_icon("fw sign-out ", text: "Log out"), destroy_user_session_path, method: :delete
+        - else
+          li= link_to "Home",  root_path
+          li= link_to "About", about_path
+          li= link_to fa_icon("fw sign-in ", text: "Sign up"), new_user_registration_path
+          li= link_to fa_icon("fw sign-in ", text: "Log in"), new_user_session_path

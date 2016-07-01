@@ -1,0 +1,59 @@
+// Typography
+//
+// Headings, body text, lists, and other misc typographic elements.
+
+body {
+  font-family: $root-font-family;
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: $heading-font-family;
+  font-weight: normal;
+  line-height: 1.25;
+  color: $heading-font-color;
+  text-rendering: optimizeLegibility;
+  margin-bottom: .5rem;
+}
+
+// h1, .h1 {
+//   margin-top: 3rem;
+//   font-size: 2rem;
+//   font-weight: 700;
+// }
+//
+// h2, .h2 {
+//   margin-top: 2.8rem;
+//   font-size: 1.5rem;
+//   font-weight: 700;
+// }
+//
+// h3, .h3 {
+//   margin-top: 1.5rem;
+//   font-size: 1.2rem;
+//   color: lighten($heading-font-color, 5%);
+//   font-weight: 700;
+//   h2+& {
+//     margin-top: .8rem;
+//   }
+// }
+//
+// h4, .h4 {
+//   margin-top: 1.2rem;
+//   font-size: 1.2rem;
+//   font-weight: 700;
+// }
+//
+// h5, h6,
+// .h5, .h6 {
+//   margin-top: 1.1rem;
+//   font-size: 1.1rem;
+//   font-weight: 400;
+//   font-style: italic;
+//   color: lighten($heading-font-color, 5%);
+// }
+//
+// p {
+//   margin-top: .5rem;
+//   margin-bottom: 0;
+// }

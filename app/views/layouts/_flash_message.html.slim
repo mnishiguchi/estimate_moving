@@ -1,0 +1,16 @@
+/ This is to render a Bootstrap 3 alert according to the specified alert type.
+/ https://www.railstutorial.org/book/sign_up#sec-the_flash
+/ - flash.each do |message_type, message|
+/   div [ class = "alert alert-#{message_type}" ]
+/     = message
+
+/ Devise:    notice, alert
+/ Bootstrap: success, info, warning, danger
+- flash.each do |type, message|
+  - type = :success if notice
+  - type = :danger  if alert
+  div[class="alert alert-#{type}"]
+    = message
+    button.close[aria-hidden="true" data-dismiss="alert" type="button"] 
+      | ×
+.clearfix

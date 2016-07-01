@@ -1,0 +1,41 @@
+@import url(https://fonts.googleapis.com/css?family=PT+Serif);
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700,900,400italic,300);
+// @import url(https://fonts.googleapis.com/css?family=Muli:400,400italic,300);
+// @import url(https://fonts.googleapis.com/css?family=Roboto:100italic);
+
+// Swatch
+$gray-1: #f1f1f1;
+$gray-2: #c1c1c1;
+$gray-3: #717171;
+$gray-4: #515151;
+$gray-5: #313131;
+
+$blue: #268bd2;
+$blue-darker: rgba(#16527c, 0.6);
+$red: #ac4142;
+$orange: #d28445;
+$yellow: #f4bf75;
+$green: #90a959;
+$cyan: #75b5aa;
+$brown: #8f5536;
+
+// Configure colors for the app.
+$root-font-family: "PT Serif", 'Times New Roman', serif;
+$root-font-size: 18px;
+$root-line-height: 1.6;
+
+$header-color: #082031;
+$header-color-transparent: rgba(8, 32, 49, .9);
+
+$body-color: $gray-5;
+$body-bg: $gray-1;
+$link-color: $blue;
+$link-hover-color: #6a9fb5;
+
+$heading-font-family: 'Lato', "Helvetica Neue", Arial, sans-serif;
+$heading-font-color: #425469;
+
+$jumbotron-background: rgba(38, 139, 210, .2);
+
+$large-breakpoint: 38em;
+$large-font-size: 20px;

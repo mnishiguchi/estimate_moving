@@ -1,0 +1,4 @@
+.user_info
+  = gravatar_for(current_user, size: 50)
+  ' Logged in as
+  = current_user.email if current_user
