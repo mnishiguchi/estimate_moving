@@ -46,3 +46,41 @@ Gold:
 - I want to be able to duplicate moving project as necessary.
 - I want to be able to sort my table by tag, volume and name.
 - I want to be able to filter my table by a search term.
+
+---
+
+## Set up
+
+#### rspec
+
+```bash
+$ rails generate rspec:install
+```
+
+Then, configure in `spec/rails_helper.rb` as an as-needed basis. (E.g., `shoulda/matchers`, `capybara/poltergeist`, etc)
+
+#### guard
+
+```bash
+$ guard init
+```
+
+#### simple form
+
+```bash
+$ rails generate simple_form:install --bootstrap
+
+# Inside your views, use the 'simple_form_for' with one of the Bootstrap form
+# classes, '.form-horizontal' or '.form-inline', as the following:
+#
+#   = simple_form_for(@user, html: { class: 'form-horizontal' }) do |form|
+```
+
+#### devise
+
+```
+$ rails generate devise:install
+$ rails generate devise User
+$ rails generate devise:views
+$ rails db:migrate
+```
