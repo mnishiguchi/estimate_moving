@@ -5,5 +5,5 @@ li.moving[id="moving-#{moving.id}"]
     = h(moving.description) 
      
   .controls
-    = link_to "Edit", edit_moving_path(moving)
-    = link_to "Delete", moving, method: :delete, data: { confirm: 'Are you sure?' }
+    = link_to fa_icon("pencil"), edit_moving_path(moving)
+    = link_to fa_icon("times"), moving, method: :delete, data: { confirm: 'Are you sure?' }

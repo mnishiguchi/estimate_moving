@@ -23,6 +23,8 @@ class HouseholdItem < ApplicationRecord
   validates :quantity, presence: true
   validates :description, length: { maximum: 255 }
 
+  default_scope -> { order(:updated_at).reverse_order }
+
   # Used when an item is created or edited.
   def all_tags=(names)
     self.tags = names.split(",").map do |name|

@@ -1,15 +1,17 @@
-= provide(:title, "New household_item")
+= provide(:title, "New household item")
+
+h1 New item
 
 .row
-  .col-sm-offset-3.col-sm-6
-    h1 New item
-    
+  .col-sm-4
     / This is a nested route.
     = simple_form_for([@moving, @household_item], html: { class: 'form-horizontal' }) do |f|
-      = f.input :name 
+      = f.input :name
       = f.input :volume 
       = f.input :quantity 
       = f.input :all_tags
       = f.input :description 
       .form-group
         = f.submit "Create item", class: 'btn btn-primary'
+  .col-sm-8
+    = render "shared/moving_items", moving: @moving

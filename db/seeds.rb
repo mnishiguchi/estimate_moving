@@ -48,6 +48,7 @@ moving.household_items.create!([
 ])
 
 # Create tags on household_items
+tag_names = %w(kitcken living_room bed_room)
 HouseholdItem.all.each do |item|
-  item.tags.create name: FFaker::Lorem.word
+  item.tags.create name: tag_names.sample
 end

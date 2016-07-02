@@ -13,13 +13,16 @@ class HouseholdItemsController < ApplicationController
     @household_item = @moving.household_items.new
   end
 
+  # The add form is in movings#show.
   def create
     @household_item = @moving.household_items.new(household_item_params
                                                   .merge(moving: @moving))
     if @household_item.save
-      flash[:success] = "Item created"
-      redirect_to moving_household_item_url(@moving, @household_item)
+      flash.now[:success] = "Item created"
+      redirect_to new_moving_household_item_url @moving
     else
+      @moving = Moving.find(params[:moving_id])
+      flash.now[:danger] = @household_item.errors.full_messages.to_sentence
       render :new
     end
   end
@@ -39,13 +42,17 @@ class HouseholdItemsController < ApplicationController
   def destroy
     @household_item.destroy
     flash[:info] = "Item deleted"
-    redirect_to @moving
+    if request.referer == new_moving_household_item_url
+      redirect_to new_moving_household_item_url
+    else
+      redirect_to @moving
+    end
   end
 
   private
 
     def household_item_params
-      params.require(:household_item).permit(:name, :volume, :quantity, :all_tags, :description)
+      params.require(:household_item).permit(:name, :volume, :quantity, :all_tags, :description, :moving_id)
     end
 
     # Make sure that we access movings through current_user.
