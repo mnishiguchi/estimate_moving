@@ -13,4 +13,8 @@ class Tag < ApplicationRecord
   has_many :household_items, through: :item_tags
 
   validates :name, presence: true
+
+  def self.counts
+    self.select("name, count(taggings.tag_id) as count").joins(:taggings).group("taggings.tag_id")
+  end
 end

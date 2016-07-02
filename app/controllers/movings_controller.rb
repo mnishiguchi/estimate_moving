@@ -1,5 +1,5 @@
 class MovingsController < ApplicationController
-  
+
 =begin
 NOTE: Always retrieve movings through `current_user`.
 Never directly retrieve movings from `Moving` model.
@@ -23,7 +23,7 @@ Logged-in user can access only his/her own movings.
   def create
     @moving = current_user.movings.new(moving_params)
     if @moving.save
-      flash[:success] = "A moving created"
+      flash[:success] = "Moving created"
       redirect_to @moving
     else
       render :new

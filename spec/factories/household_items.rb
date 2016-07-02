@@ -14,7 +14,7 @@
 
 FactoryGirl.define do
   factory :household_item do
-    name "Armchair"
+    sequence(:name) { |n| "Chair #{n}" }
     description "Very comfortable"
     volume 30
     quantity 1

@@ -9,4 +9,28 @@ p
 .controls
   = link_to "Edit", edit_moving_path(@moving)
   = link_to "Delete", @moving, method: :delete, data: { confirm: 'Are you sure?' }
+
+hr
+
+= link_to "Add item", new_moving_household_item_path(@moving, @household_item)    
     
+.all_household_items.table-responsive
+  table.table
+    thead
+      thead
+        tr
+          th Name 
+          th Volume
+          th Quantity
+          th Tags
+          th Description
+      tbody
+        - @moving.household_items.each do |item|
+          tr
+            td = item.name
+            td = item.volume
+            td = item.quantity
+            td = item.all_tags
+            td = item.description
+            td = link_to "edit", edit_moving_household_item_path(item.moving, item)
+            td = link_to "Delete", moving_household_item_path(item.moving, item), method: :delete, data: { confirm: 'Are you sure?' }
