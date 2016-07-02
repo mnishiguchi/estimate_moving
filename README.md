@@ -108,6 +108,23 @@ rails g model ItemTag household_item:references tag:references
 
 ## Troubleshooting
 
+#### Jumping to an anchor after redirect
+
+```rb
+redirect_to moving_url(@moving, anchor: 'add_item')
+```
+
+#### Adding a key-value pair for a form
+
+
+```slim
+= simple_form_for([moving, household_item], :url => { :type => "Hello" } ...
+```
+
+```
+http://localhost:3000/movings/1/household_items?type=Hello
+```
+
 ---
 
 ## References

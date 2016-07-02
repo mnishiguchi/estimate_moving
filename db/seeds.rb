@@ -47,7 +47,7 @@ moving.household_items.create!([
   { name: "desk", volume: 6, quantity: 1, description: FFaker::Lorem.paragraph(1) }
 ])
 
-# Create tags on household_items
+# Create tags on household_items.
 HouseholdItem.all.each do |item|
   item.tags.create name: FFaker::Lorem.word
 end

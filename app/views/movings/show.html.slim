@@ -12,8 +12,17 @@ p
 
 hr
 
-= link_to "Add item", new_moving_household_item_path(@moving, @household_item)    
+#add_item
+  strong
+    | ( 
+    a#add_toggle[href="#"]
+      = fa_icon("plus", text: "Add item")
+    |  )
+  .add_form
+    = render 'household_items/add_form', moving: @moving, household_item: @household_item
     
+hr
+
 .all_household_items.table-responsive
   table.table
     thead
@@ -26,11 +35,35 @@ hr
           th Description
       tbody
         - @moving.household_items.each do |item|
-          tr
-            td = item.name
-            td = item.volume
-            td = item.quantity
-            td = item.all_tags
-            td = item.description
-            td = link_to "edit", edit_moving_household_item_path(item.moving, item)
-            td = link_to "Delete", moving_household_item_path(item.moving, item), method: :delete, data: { confirm: 'Are you sure?' }
+          - if item.valid?
+            tr
+              td = item.name
+              td = item.volume
+              td = item.quantity
+              td = item.all_tags
+              td = item.description
+              td = link_to "edit", edit_moving_household_item_path(@moving, item)
+              td = link_to "Delete", moving_household_item_path(@moving, item), method: :delete, data: { confirm: 'Are you sure?' }
+
+/ css:
+/ 
+/   .add_form { 
+/     display: none;
+/   }
+/   .add_form.active {
+/       display: block;
+/     }
+/ 
+/ 
+/ javascript:
+/ 
+/   $(document).ready(function(){
+/     var add_toggle = $('#add_toggle')
+/     var add_form   = $('.add_form')
+/     
+/     add_toggle.on('click', function(event){
+/       add_form.toggleClass('active')
+/       event.preventDefault()
+/     })
+/     
+/   })

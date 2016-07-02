@@ -9,18 +9,16 @@ class HouseholdItemsController < ApplicationController
   def show
   end
 
-  def new
-    @household_item = @moving.household_items.new
-  end
-
+  # The add form is in movings#show.
   def create
     @household_item = @moving.household_items.new(household_item_params
                                                   .merge(moving: @moving))
     if @household_item.save
       flash[:success] = "Item created"
-      redirect_to moving_household_item_url(@moving, @household_item)
+      redirect_to moving_url(@moving)
     else
-      render :new
+
+      render 'movings/show'
     end
   end
 

@@ -14,6 +14,7 @@ Logged-in user can access only his/her own movings.
   end
 
   def show
+    @household_item = HouseholdItem.new # This is for the add form.
   end
 
   def new
