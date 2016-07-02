@@ -1,0 +1,10 @@
+= provide(:title, "All movings")
+
+h1 
+  | All movings ( 
+  a#add_moving_toggle[href="#{new_moving_path}"]
+    = fa_icon("plus")
+  |  )
+
+.all_movings
+  = render @movings

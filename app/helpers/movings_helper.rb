@@ -1,0 +1,2 @@
+module MovingsHelper
+end

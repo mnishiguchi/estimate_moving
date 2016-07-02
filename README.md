@@ -61,7 +61,7 @@ Gold:
 $ rails generate rspec:install
 ```
 
-Then, configure in `spec/rails_helper.rb` as an as-needed basis. (E.g., `shoulda/matchers`, `capybara/poltergeist`, etc)
+Then, configure in `spec/rails_helper.rb` as an as-needed basis. (E.g., `shoulda/matchers`, `capybara/poltergeist`, devise, etc)
 
 #### guard
 

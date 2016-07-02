@@ -1,0 +1,12 @@
+= provide(:title, @moving.name)
+
+h1 
+  = @moving.name
+
+p 
+  = @moving.description
+
+.controls
+  = link_to "Edit", edit_moving_path(@moving)
+  = link_to "Delete", @moving, method: :delete, data: { confirm: 'Are you sure?' }
+    

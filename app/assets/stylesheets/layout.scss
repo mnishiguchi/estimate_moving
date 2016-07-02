@@ -98,3 +98,11 @@ footer {
     border: 3px solid white;
   }
 }
+
+.controls {
+  // Separator between control buttons.
+  a:not(:last-child):after {
+    content: "|";
+    padding: 0 5px;
+  }
+}
