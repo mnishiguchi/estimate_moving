@@ -1,3 +1,15 @@
+.movind_stats
+  .panel.panel-default
+    .total_volume 
+      .labal.label-default Total volume:
+      = moving.household_items.sum(:volume)
+      ' cft
+  .panel.panel-default
+    .total_quantity 
+      .labal.label-default Total item count:
+      = moving.household_items.sum(:quantity)
+      ' pcs
+
 .moving_items.table-responsive
   table.table
     thead

@@ -42,6 +42,8 @@ masa.movings.create!(name: name, description: description)
 # Create items on a moving project.
 moving = masa.movings.first
 moving.household_items.create!([
+  { name: "bad", volume: 100, quantity: 1, description: FFaker::Lorem.paragraph(1) },
+  { name: "floor_lamp", volume: 5, quantity: 1, description: FFaker::Lorem.paragraph(1) },
   { name: "sofa", volume: 80, quantity: 1, description: FFaker::Lorem.paragraph(1) },
   { name: "chair", volume: 8, quantity: 1, description: FFaker::Lorem.paragraph(1) },
   { name: "desk", volume: 6, quantity: 1, description: FFaker::Lorem.paragraph(1) }
