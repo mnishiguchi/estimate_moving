@@ -1,10 +1,8 @@
 class MovingsController < ApplicationController
 
-=begin
-NOTE: Always retrieve movings through `current_user`.
-Never directly retrieve movings from `Moving` model.
-Logged-in user can access only his/her own movings.
-=end
+  # NOTE: Always retrieve movings through `current_user`.
+  # Never directly retrieve movings from `Moving` model.
+  # Logged-in user can access only his/her own movings.
 
   before_action :authenticate_user!
   before_action :set_current_user_moving, only: [:show, :edit, :update, :destroy]
@@ -14,6 +12,7 @@ Logged-in user can access only his/her own movings.
   end
 
   def show
+    redirect_to moving_household_items_url @moving
   end
 
   def new

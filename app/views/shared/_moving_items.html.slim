@@ -1,33 +1,25 @@
-.movind_stats
-  .panel.panel-default
-    .total_volume 
-      .labal.label-default Total volume:
-      = moving.household_items.sum(:volume)
-      ' cft
-  .panel.panel-default
-    .total_quantity 
-      .labal.label-default Total item count:
-      = moving.household_items.sum(:quantity)
-      ' pcs
-
-.moving_items.table-responsive
-  table.table
-    thead
-      tr
-        th Name 
-        th Volume
-        th Quantity
-        th Tags
-        th Description
-        th
-        th
-    tbody
-      - moving.household_items.select(&:valid?).each do |item|
+-# Requires:
+-# * moving
+-# * household_items
+#moving_items
+  .table-responsive
+    table.table
+      thead
         tr
-          td = item.name
-          td = item.volume
-          td = item.quantity
-          td = item.all_tags
-          td = item.description
-          td = link_to fa_icon("pencil"), edit_moving_household_item_path(moving, item)
-          td = link_to fa_icon("times"), moving_household_item_path(moving, item), method: :delete, data: { confirm: 'Are you sure?' }
+          th Name 
+          th Volume
+          th Quantity
+          th Tags
+          th Description
+          th
+          th
+      tbody
+        - household_items.select(&:valid?).each do |item|
+          tr
+            td = item.name
+            td = item.volume
+            td = item.quantity
+            td = item.all_tags
+            td = item.description
+            td = link_to fa_icon("pencil"), edit_moving_household_item_path(moving, item)
+            td = link_to fa_icon("times"), moving_household_item_path(moving, item), method: :delete, data: { confirm: 'Are you sure?' }

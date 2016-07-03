@@ -50,7 +50,7 @@ moving.household_items.create!([
 ])
 
 # Create tags on household_items
-tag_names = %w(kitcken living_room bed_room)
+tag_names = %w(kitchen living_room bed_room bathroom)
 HouseholdItem.all.each do |item|
   item.tags.create name: tag_names.sample
 end

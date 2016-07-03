@@ -16,4 +16,16 @@ class Moving < ApplicationRecord
 
   validates :name, presence: true
   validates :description, length: { maximum: 255 }
+
+  # All the tags that are associated with a moving.
+  def tags
+    Tag.joins(household_items: :moving)
+       .where(movings: {id: id})
+       .select('DISTINCT tags.name')
+       .order('tags.name')
+  end
+
+  def volume_by_tag(name)
+    HouseholdItem.tagged_with(name, self.id).sum(:volume)
+  end
 end

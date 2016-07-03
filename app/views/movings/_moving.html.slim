@@ -1,7 +1,7 @@
 li.moving[id="moving-#{moving.id}"]
 
   strong.moving_title
-    = link_to h(moving.name), moving_path(moving)
+    = link_to h(moving.name), moving_household_items_path(moving)
     
   .moving_content
     = h(moving.description) 

@@ -25,28 +25,30 @@ class HouseholdItem < ApplicationRecord
 
   default_scope -> { order(:updated_at).reverse_order }
 
-  # Used when an item is created or edited.
-  def all_tags=(names)
-    self.tags = names.split(",").map do |name|
-      # If the tag does not already exist, create it.
-      Tag.where(name: name.strip).first_or_create!
+  # Search for items by the specified tag name.
+  # Require moving id to enforce privacy.
+  def self.tagged_with(name, moving_id)
+    if name.present? && moving_id
+      Tag.find_by_name!(name).household_items.where(moving_id: moving_id)
     end
   end
 
-  # All the tags separated by commas.
+
+  # The virtual attribute `tags`
+  # - An array of strings
+  # - Holds a collection of tags that are associated with a household item.
+
+  # Used for processing user's input when an item is created or edited.
+  def all_tags=(names)
+    self.tags = names.split(",").map do |name|
+      # If a tag does not already exist, create it.
+      Tag.where(name: name.strip).first_or_create!
+    end.uniq
+  end
+
+  # The string representation of all the tags that are associated with a household item.
   # Used for showing currently-set tags in a form.
   def all_tags
     self.tags.map(&:name).join(", ")
-  end
-
-  # Array of all the tag names.
-  # Used for displaying tags in a view.
-  def tag_names
-    self.tags.map(&:name)
-  end
-
-  # Takes the name of the specified tag and search for items associated with it.
-  def self.tagged_with(name)
-    Tag.find_by_name!(name).household_items
   end
 end

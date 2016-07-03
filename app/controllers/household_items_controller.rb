@@ -1,12 +1,30 @@
 class HouseholdItemsController < ApplicationController
   before_action :authenticate_user!      # All actions
   before_action :set_current_user_moving # All actions
-  before_action :set_household_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_household_item, only: [:edit, :update, :destroy]
 
-  # A list of all items is dieplayed in movings#show page
-  # (instead of household_items#index).
+  # Show all the items of a moving project that belongs to current user.
+  # If requested, perform the specified filtering.
+  def index
+    # if params[:filter].present?
+    #   @household_items = HouseholdItem.tagged_with(params[:filter], params[:moving_id])
+    # else
+    #   @household_items = @moving.household_items
+    # end
 
-  def show
+    respond_to do |format|
+      format.html do
+        @household_items = @moving.household_items
+        render :index
+      end
+      format.js do
+        if params[:filter].present?
+          @household_items = HouseholdItem.tagged_with(params[:filter], params[:moving_id])
+        else
+          @household_items = @moving.household_items
+        end
+      end
+    end
   end
 
   def new

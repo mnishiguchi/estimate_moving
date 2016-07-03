@@ -1,0 +1,7 @@
+/*
+When a filter button is clicked, the following script is invoked via household_items#index action.
+It replaces the table content with filtered data.
+ */
+$(document).ready(function(){
+  $("#moving_items").html("<%= escape_javascript(render 'shared/moving_items', moving: @moving, household_items: @household_items) %>")
+})

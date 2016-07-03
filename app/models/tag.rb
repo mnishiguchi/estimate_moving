@@ -12,9 +12,13 @@ class Tag < ApplicationRecord
   has_many :item_tags, dependent: :destroy
   has_many :household_items, through: :item_tags
 
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: true
 
-  def self.counts
-    self.select("name, count(taggings.tag_id) as count").joins(:taggings).group("taggings.tag_id")
-  end
+  before_save :downcase_name  # Standardizes on all lower-case words.
+
+  private
+
+    def downcase_name
+      self.name.downcase!
+    end
 end

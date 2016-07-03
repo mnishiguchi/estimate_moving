@@ -1,6 +1,8 @@
 = provide(:title, "New household item")
 
-h1 New item
+h1.h2
+  small Add item to 
+  = link_to @moving.name.capitalize, moving_path(@moving)
 
 .row
   .col-sm-4
@@ -13,5 +15,8 @@ h1 New item
       = f.input :description 
       .form-group
         = f.submit "Create item", class: 'btn btn-primary'
+        
   .col-sm-8
-    = render "shared/moving_items", moving: @moving
+    = render "shared/moving_stats", moving: @moving, household_items: @moving.household_items
+    = render "shared/moving_filter_form", moving: @moving, household_items: @moving.household_items
+    = render "shared/moving_items", moving: @moving, household_items: @moving.household_items
