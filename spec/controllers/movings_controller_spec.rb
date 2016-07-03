@@ -17,14 +17,6 @@ RSpec.describe MovingsController, type: :controller do
       end
     end
 
-    # SHOW
-    describe "GET /movings/:id" do
-      it "redirects to the login page" do
-        get :show, id: @moving.id
-        expect(response).to redirect_to "/users/sign_in"
-      end
-    end
-
     #  NEW
     describe "GET /movings/new" do
       it "redirects to the login page" do
@@ -82,16 +74,6 @@ RSpec.describe MovingsController, type: :controller do
     describe "GET /movings" do
       before(:each) { get :index }
       it { expect(response).to render_template(:index) }
-    end
-
-    # SHOW
-    describe "GET /movings/:id" do
-      before(:each) do
-        user = subject.current_user
-        moving = user.movings.create(FactoryGirl.attributes_for(:moving))
-        get :show, id: moving.id
-      end
-      it { expect(response).to render_template :show }
     end
 
     #  NEW

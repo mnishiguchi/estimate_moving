@@ -12,6 +12,14 @@ RSpec.describe HouseholdItemsController, type: :controller do
       end
     end
 
+    # INDEX
+    describe "GET /movings/:moving_id/household_items" do
+      it "redirects to the login page" do
+        get :index, moving_id: @moving.id
+        expect(response).to redirect_to "/users/sign_in"
+      end
+    end
+
     # NEW
     describe "GET /movings/:moving_id/household_items/new" do
       it "redirects to the login page" do
@@ -73,6 +81,14 @@ RSpec.describe HouseholdItemsController, type: :controller do
       5.times do
         @moving.household_items.create(FactoryGirl.attributes_for(:household_item))
       end
+    end
+
+    # INDEX
+    describe "GET /movings/:moving_id/household_items" do
+      before :each do
+        get :index, moving_id: @moving.id
+      end
+      it { expect(response).to render_template(:index) }
     end
 
     # NEW

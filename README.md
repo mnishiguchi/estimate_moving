@@ -46,10 +46,9 @@ Gold:
 - I want to create/edit/delete my moving projects from my account.
 
 #### Gold
+- I want cu.ft value for each item to be auto-filled.
+- I want suggestion list for new/edit forms.
 - I want to log in via Facebook or twitter.
-- I want to be able to duplicate moving project as necessary.
-- I want to be able to sort my table by tag, volume and name.
-- I want to be able to filter my table by a search term.
 
 ---
 
@@ -91,6 +90,7 @@ $ rails db:migrate
 ```
 
 [Create a username field in the users table](https://github.com/plataformatec/devise/wiki/How-To:-Allow-users-to-sign-in-using-their-username-or-email-address#create-a-username-field-in-the-users-table)
+
 ---
 
 ## Set up database
@@ -120,13 +120,11 @@ Tag.joins(household_items: :moving)
 ```
 
 ```rb
-# Bad example
+# This works but it requires n queries.
 household_items.map { |item| item.tags }.flatten.map(&:name).uniq
 ```
 
 [Select values through many to many relationship in active record using “where”](http://stackoverflow.com/a/21563632/3837223)
-
-
 
 #### Showing error messages in flash
 
@@ -156,6 +154,27 @@ redirect_to moving_url(@moving, anchor: 'add_item')
 ```
 http://localhost:3000/movings/1/household_items?type=Hello
 ```
+
+#### Read data from a file
+
+```rb
+module HouseholdItemsHelper
+
+  def item_hash
+    # Read a file.
+    file = File.read(File.dirname(__FILE__) + '/household_items.json')
+
+    # Convert JSON to Ruby Hash.
+    data_hash = JSON.parse(file)
+  end
+end
+```
+
+#### jQuery ui-autocomplete
+
+- [https://github.com/joliss/jquery-ui-rails](https://github.com/joliss/jquery-ui-rails)
+- [https://jqueryui.com/autocomplete/](https://jqueryui.com/autocomplete/)
+
 
 ---
 

@@ -3,15 +3,12 @@ class HouseholdItemsController < ApplicationController
   before_action :set_current_user_moving # All actions
   before_action :set_household_item, only: [:edit, :update, :destroy]
 
+  # To use the item_volume_json data.
+  include HouseholdItemsHelper
+
   # Show all the items of a moving project that belongs to current user.
   # If requested, perform the specified filtering.
   def index
-    # if params[:filter].present?
-    #   @household_items = HouseholdItem.tagged_with(params[:filter], params[:moving_id])
-    # else
-    #   @household_items = @moving.household_items
-    # end
-
     respond_to do |format|
       format.html do
         @household_items = @moving.household_items
@@ -36,7 +33,7 @@ class HouseholdItemsController < ApplicationController
     @household_item = @moving.household_items.new(household_item_params
                                                   .merge(moving: @moving))
     if @household_item.save
-      flash.now[:success] = "Item created"
+      flash[:success] = "Item created"
       redirect_to new_moving_household_item_url @moving
     else
       @moving = Moving.find(params[:moving_id])

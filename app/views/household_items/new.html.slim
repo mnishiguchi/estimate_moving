@@ -20,3 +20,29 @@ h1.h2
     = render "shared/moving_stats", moving: @moving, household_items: @moving.household_items
     = render "shared/moving_filter_form", moving: @moving, household_items: @moving.household_items
     = render "shared/moving_items", moving: @moving, household_items: @moving.household_items
+
+javascript:
+
+  $(document).ready(function(){
+  
+    // Write the item-volume-json data directly on the HTML at server side.
+    // The data is an object of key-value pairs (name: volume)
+    var data = #{raw item_volume_json}
+    var itemNames = Object.keys(data)
+  
+    // Configure the autocomplete.
+    $('#household_item_name').autocomplete({
+      source: itemNames,
+      select: onSelect
+    });
+    
+    // Invoked when an autocomplete list item is clicked.
+    function onSelect(e, ui) {
+      setVolume(data[ui.item.value])
+    }
+    
+    // Set the specified value on the volume field.
+    function setVolume(volume){
+      $('#household_item_volume').val(volume)
+    }
+  });
