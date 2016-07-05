@@ -35,7 +35,6 @@ class HouseholdItem < ApplicationRecord
     end
   end
 
-
   # The virtual attribute `tags`
   # - An array of strings
   # - Holds a collection of tags that are associated with a household item.

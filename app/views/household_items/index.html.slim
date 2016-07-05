@@ -15,6 +15,53 @@ hr
 .form-group
   = link_to "Add item", new_moving_household_item_path(@moving, @household_item), class: "btn btn-primary"   
 
-= render "shared/moving_stats", moving: @moving, household_items: @household_items
+.row
+  .col-sm-6
+    .well
+      #moving_volume_pie_chart[style="width:100%; height:auto;"]
+  .col-sm-6
+    = render "shared/moving_stats", moving: @moving, household_items: @household_items
+    
 = render "shared/moving_filter_forms", moving: @moving, household_items: @household_items
 = render "shared/moving_items", moving: @moving, household_items: @household_items
+
+javascript:
+
+  // Configure the pie chart.
+  // http://www.highcharts.com/demo/pie-basic
+  $(document).ready(function () {
+
+      // Enbed the json data at server side.
+      var data = #{raw @data}
+
+      // Build the chart.
+      $('#moving_volume_pie_chart').highcharts({
+          chart: {
+              plotBackgroundColor: null,
+              plotBorderWidth: null,
+              plotShadow: false,
+              type: 'pie'
+          },
+          title: {
+              text: ''
+          },
+          tooltip: {
+              pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+          },
+          plotOptions: {
+              pie: {
+                  allowPointSelect: true,
+                  cursor: 'pointer',
+                  dataLabels: {
+                      enabled: false
+                  },
+                  showInLegend: true
+              }
+          },
+          series: [{
+              name: 'Volume',
+              colorByPoint: true,
+              data: data
+          }]
+      });
+  });

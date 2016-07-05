@@ -3,17 +3,24 @@ class HouseholdItemsController < ApplicationController
   before_action :set_current_user_moving # All actions
   before_action :set_household_item, only: [:edit, :update, :destroy]
 
-  # To use the item_volume_json data.
+  # To use the `item_volume_json` and `json_for_pie_chart` helpers.
   include HouseholdItemsHelper
 
   # Show all the items of a moving project that belongs to current user.
   # If requested, perform the specified filtering.
   def index
     respond_to do |format|
+      # For the initial request.
       format.html do
         @household_items = @moving.household_items
+
+        # Create data that is required for the pie chart.
+        @data = json_for_pie_chart(@moving)
+
         render :index
       end
+
+      # For async requests.
       format.js do
         if params[:filter].present?
           # Search for the items that belong to the moving and are taggged with the specified tag name.

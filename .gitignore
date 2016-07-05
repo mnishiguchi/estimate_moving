@@ -19,6 +19,9 @@
 # Ignore public directory.
 /public
 
+# Ignore node_modules directory.
+/node_modules
+
 ### https://raw.github.com/github/gitignore/9f3470db3b0045f9329412eb73be98d808ea82e8/Global/osx.gitignore
 
 .DS_Store

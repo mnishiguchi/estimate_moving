@@ -1,0 +1,84 @@
+{
+  "_args": [
+    [
+      "highcharts",
+      "/Users/masa/projects/ruby/estimate_moving"
+    ]
+  ],
+  "_from": "highcharts@latest",
+  "_id": "highcharts@4.2.5",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/highcharts",
+  "_nodeVersion": "4.4.1",
+  "_npmOperationalInternal": {
+    "host": "packages-16-east.internal.npmjs.com",
+    "tmp": "tmp/highcharts-4.2.5.tgz_1462523288756_0.8971244080457836"
+  },
+  "_npmUser": {
+    "email": "torstein@highsoft.com",
+    "name": "highsoft"
+  },
+  "_npmVersion": "2.14.20",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "highcharts",
+    "raw": "highcharts",
+    "rawSpec": "",
+    "scope": null,
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/highcharts/-/highcharts-4.2.5.tgz",
+  "_shasum": "f18bbda5ca326fdff7d816c94814fe8509cec969",
+  "_shrinkwrap": null,
+  "_spec": "highcharts",
+  "_where": "/Users/masa/projects/ruby/estimate_moving",
+  "author": {
+    "email": "support@highcharts.com",
+    "name": "Highsoft AS",
+    "url": "http://www.highcharts.com/about"
+  },
+  "bugs": {
+    "url": "https://github.com/highcharts/highcharts/issues"
+  },
+  "dependencies": {},
+  "description": "JavaScript charting framework",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "f18bbda5ca326fdff7d816c94814fe8509cec969",
+    "tarball": "https://registry.npmjs.org/highcharts/-/highcharts-4.2.5.tgz"
+  },
+  "gitHead": "65bdfc1c14654f3b9eba94d138f0c8c3f4b28896",
+  "homepage": "http://www.highcharts.com",
+  "keywords": [
+    "charts",
+    "dataviz",
+    "graphs",
+    "visualization",
+    "data",
+    "browserify",
+    "webpack"
+  ],
+  "license": "https://www.highcharts.com/license",
+  "main": "highcharts.js",
+  "maintainers": [
+    {
+      "email": "torstein@highsoft.com",
+      "name": "highsoft"
+    }
+  ],
+  "name": "highcharts",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/highcharts/highcharts-dist.git"
+  },
+  "scripts": {},
+  "version": "4.2.5"
+}
