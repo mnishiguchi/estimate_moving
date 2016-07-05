@@ -28,40 +28,60 @@ hr
 javascript:
 
   // Configure the pie chart.
-  // http://www.highcharts.com/demo/pie-basic
-  $(document).ready(function () {
+  // http://www.highcharts.com/demo
+  // 
+  // Data structure:
+  // - categories: ['Africa', 'America', 'Asia', 'Europe', 'Oceania']
+  // - data: [107, 31, 635, 203, 2]
+  $(function () {
+    // Embed the json data at server side.
+    var data = #{raw @data}
+    var unit = ' cft'
 
-      // Enbed the json data at server side.
-      var data = #{raw @data}
-
-      // Build the chart.
-      $('#moving_volume_pie_chart').highcharts({
-          chart: {
-              plotBackgroundColor: null,
-              plotBorderWidth: null,
-              plotShadow: false,
-              type: 'pie'
-          },
-          title: {
-              text: ''
-          },
-          tooltip: {
-              pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-          },
-          plotOptions: {
-              pie: {
-                  allowPointSelect: true,
-                  cursor: 'pointer',
-                  dataLabels: {
-                      enabled: false
-                  },
-                  showInLegend: true
-              }
-          },
-          series: [{
-              name: 'Volume',
-              colorByPoint: true,
-              data: data
-          }]
-      });
+    // Build the chart.
+    $('#moving_volume_pie_chart').highcharts(
+      {
+        chart: {
+            type: 'bar'
+        },
+        title: {
+            text: 'Volume under each tag'
+        },
+        xAxis: {
+            categories: data[0],
+            title: {
+                text: null
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: unit,
+                align: 'high'
+            },
+            labels: {
+                overflow: 'justify'
+            }
+        },
+        tooltip: false,
+        plotOptions: {
+            bar: {
+                dataLabels: {
+                    enabled: true
+                }
+            }
+        },
+        legend: {
+            x: 9999, // Make the legend invisible.
+            y: 9999
+        },
+        credits: {
+            enabled: false
+        },
+        series: [{
+            name: 'volume',
+            data: data[1]
+        }]
+    });
   });
+  

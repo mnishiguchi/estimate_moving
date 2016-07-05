@@ -14,8 +14,8 @@ class HouseholdItemsController < ApplicationController
       format.html do
         @household_items = @moving.household_items
 
-        # Create data that is required for the pie chart.
-        @data = json_for_pie_chart(@moving)
+        # Create data that is required for the bar chart.
+        @data = json_for_bar_chart(@moving)
 
         render :index
       end

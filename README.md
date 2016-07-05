@@ -16,6 +16,14 @@
 - graphs/charts for moving volume data.
 - sign up and log in via Facebook or twitter.
 
+## Demo
+
+`https://estimate-moving.herokuapp.com/`
+
+Log in as example user:
+- Email - `user@example.com`
+- Password - `password`
+
 ## Local setup
 
 ```bash
