@@ -3,24 +3,24 @@
 -# * household_items
 
 .moving_stats
-  .row
-    .col-xs-6
-      #total_volume.panel.panel-default
-        .panel-heading.heading Total volume
-        .panel-body 
-          span.value #{household_items.sum(:volume)}
-          span.unit
-            |  cft
-    .col-xs-6
-      #total_quantity.panel.panel-default
-        .panel-heading.heading Total item count
-        .panel-body
-          span.value #{household_items.sum(:quantity)}
-          span.unit 
-            |  pcs
+  .panel.panel-default
+    .panel-heading
+      #moving_stats_heading.h4 All items
+    .panel-body
+      .row
+        .col-xs-6
+          #moving_stats_volume
+            span.value #{household_items.sum(:volume)}
+            span.unit
+              |  cft
+        .col-xs-6
+          #moving_stats_quantity
+            span.value #{household_items.sum(:quantity)}
+            span.unit 
+              |  pcs
 
 css:
-  #total_volume .value, 
-  #total_quantity .value {
+  #moving_stats_volume .value, 
+  #moving_stats_quantity .value {
     font-size: 3rem;
   }

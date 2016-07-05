@@ -9,9 +9,9 @@ h1.h2
     / This is a nested route.
     = simple_form_for([@moving, @household_item], html: { class: 'form-horizontal' }) do |f|
       = f.input :name
-      = f.input :volume 
-      = f.input :quantity 
-      = f.input :all_tags
+      = f.input :volume, input_html: { min: '0', step: 'any' }
+      = f.input :quantity, input_html: { min: '1', step: '1' }
+      = f.input :all_tags, placeholder: "Input tags separated by tags..."
       = f.input :description 
       .form-group
         = f.submit "Create item", class: 'btn btn-primary'
@@ -24,6 +24,7 @@ h1.h2
 
 javascript:
   // I use inline javascript because I want to enbed data into javascript at server side.
+  // Also this script is only used for this particular HTML component.
   $(document).ready(function(){
   
     autocompleteNameAndVolume();

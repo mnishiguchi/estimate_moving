@@ -16,10 +16,15 @@ class HouseholdItemsController < ApplicationController
       end
       format.js do
         if params[:filter].present?
-          @tag_name = params[:filter]
+          # Search for the items that belong to the moving and are taggged with the specified tag name.
           @household_items = HouseholdItem.tagged_with(params[:filter], params[:moving_id])
+
+          # Detect the tag name that was clicked based on params[:filter].
+          @tag_name = params[:filter].capitalize
         else
+          # Obtain all the items that belong to the moving.
           @household_items = @moving.household_items
+          @tag_name = "All items"
         end
       end
     end

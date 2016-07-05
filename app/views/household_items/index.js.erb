@@ -9,15 +9,14 @@ $(document).ready(function(){
   var quantity = <%= @household_items.sum(:quantity) %>
 
   // Detect the tag name that was clicked based on params[:filter].
-  var tagName = "<%= @tag_name %>" || "all items"
+  var tagName = "<%= @tag_name %>"
 
   // Update the stats headings.
-  $("#total_volume .heading").html("Total volume of " + tagName)
-  $("#total_quantity .heading").html("Total quantity of " + tagName)
+  $("#moving_stats_heading").html(tagName)
 
   // Update the stats values.
-  $("#total_volume .value").html(volume)
-  $("#total_quantity .value").html(quantity)
+  $("#moving_stats_volume .value").html(volume)
+  $("#moving_stats_quantity .value").html(quantity)
 
   // Update the table.
   var tableHTML = "<%= j render 'shared/moving_items', moving: @moving, household_items: @household_items %>"

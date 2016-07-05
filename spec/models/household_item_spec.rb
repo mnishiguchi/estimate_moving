@@ -21,6 +21,8 @@ RSpec.describe HouseholdItem, type: :model do
 
   it { is_expected.to validate_presence_of :name }
   it { is_expected.to validate_presence_of :volume }
+  it { is_expected.to validate_numericality_of :volume }
   it { is_expected.to validate_presence_of :quantity }
+  it { is_expected.to validate_numericality_of :quantity }
   it { is_expected.to_not validate_presence_of :description }
 end

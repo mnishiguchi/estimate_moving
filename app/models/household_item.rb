@@ -19,9 +19,11 @@ class HouseholdItem < ApplicationRecord
   has_many :tags, through: :item_tags
 
   validates :name, presence: true
-  validates :volume, presence: true
-  validates :quantity, presence: true
+  validates :volume, presence: true, numericality: { greater_than: 0 }
+  validates :quantity, presence: true, numericality: { only_integer: true, greater_than: 0 }
   validates :description, length: { maximum: 255 }
+
+  before_save :downcase_name  # Standardizes on all lower-case words.
 
   default_scope -> { order(:updated_at).reverse_order }
 
@@ -51,4 +53,10 @@ class HouseholdItem < ApplicationRecord
   def all_tags
     self.tags.map(&:name).join(", ")
   end
+
+  private
+
+    def downcase_name
+      self.name.downcase!
+    end
 end
