@@ -16,6 +16,7 @@ class HouseholdItemsController < ApplicationController
       end
       format.js do
         if params[:filter].present?
+          @tag_name = params[:filter]
           @household_items = HouseholdItem.tagged_with(params[:filter], params[:moving_id])
         else
           @household_items = @moving.household_items

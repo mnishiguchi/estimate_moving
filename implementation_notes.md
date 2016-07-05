@@ -123,6 +123,10 @@ end
 - [https://github.com/joliss/jquery-ui-rails](https://github.com/joliss/jquery-ui-rails)
 - [https://jqueryui.com/autocomplete/](https://jqueryui.com/autocomplete/)
 
+#### Charts/graphs
+
+- [http://www.highcharts.com/](http://www.highcharts.com/)
+
 ---
 
 ## References

@@ -8,7 +8,7 @@
 
 require 'ffaker'
 
-# To obtain data using item_volume_hash helper. 
+# To obtain data using item_volume_hash helper.
 include HouseholdItemsHelper
 
 # Destroy old data.
@@ -54,7 +54,7 @@ moving = masa.movings.first
 end
 
 # Create tags on household_items
-tag_names_1 = %w(kitchen living_room bed_room bathroom closet)
+tag_names_1 = ["kitchen", "living room", "bed room", "bathroom", "closet"]
 tag_names_2 = %w(a b c)
 moving.household_items.each do |item|
   tags_for_this = tag_names_1.sample + ',' + tag_names_2.sample

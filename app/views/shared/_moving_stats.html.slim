@@ -1,20 +1,26 @@
 -# Requires:
 -# * moving
 -# * household_items
+
 .moving_stats
   .row
     .col-xs-6
-      .total_volume.panel.panel-default
-        .panel-heading Total volume
+      #total_volume.panel.panel-default
+        .panel-heading.heading Total volume
         .panel-body 
-          span.value #{household_items.sum(:volume)} cft
+          span.value #{household_items.sum(:volume)}
+          span.unit
+            |  cft
     .col-xs-6
-      .total_quantity.panel.panel-default
-        .panel-heading Total item count
+      #total_quantity.panel.panel-default
+        .panel-heading.heading Total item count
         .panel-body
-          span.value #{household_items.sum(:quantity)} pcs
+          span.value #{household_items.sum(:quantity)}
+          span.unit 
+            |  pcs
 
 css:
-  .moving_stats .value {
+  #total_volume .value, 
+  #total_quantity .value {
     font-size: 3rem;
   }

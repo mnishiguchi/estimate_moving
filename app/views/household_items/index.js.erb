@@ -1,7 +1,25 @@
-/*
-When a filter button is clicked, the following script is invoked via household_items#index action.
-It replaces the table content with filtered data.
- */
+// * When a filter button is clicked, the following script is invoked
+// via household_items#index action.
+// * It replaces the table content and stats values with filtered data.
+
 $(document).ready(function(){
-  $("#moving_items").html("<%= escape_javascript(render 'shared/moving_items', moving: @moving, household_items: @household_items) %>")
+
+  // Obtain the new data for the stats.
+  var volume   = <%= @household_items.sum(:volume) %>
+  var quantity = <%= @household_items.sum(:quantity) %>
+
+  // Detect the tag name that was clicked based on params[:filter].
+  var tagName = "<%= @tag_name %>" || "all items"
+
+  // Update the stats headings.
+  $("#total_volume .heading").html("Total volume of " + tagName)
+  $("#total_quantity .heading").html("Total quantity of " + tagName)
+
+  // Update the stats values.
+  $("#total_volume .value").html(volume)
+  $("#total_quantity .value").html(quantity)
+
+  // Update the table.
+  var tableHTML = "<%= j render 'shared/moving_items', moving: @moving, household_items: @household_items %>"
+  $("#moving_items").html(tableHTML)
 })
