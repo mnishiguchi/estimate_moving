@@ -16,5 +16,5 @@ hr
   = link_to "Add item", new_moving_household_item_path(@moving, @household_item), class: "btn btn-primary"   
 
 = render "shared/moving_stats", moving: @moving, household_items: @household_items
-= render "shared/moving_filter_form", moving: @moving, household_items: @household_items
+= render "shared/moving_filter_forms", moving: @moving, household_items: @household_items
 = render "shared/moving_items", moving: @moving, household_items: @household_items

@@ -1,0 +1,44 @@
+-# Requires:
+-# * moving
+-# * household_items
+
+
+.moving_filter_forms
+  / For all items: no filter applied.
+  = form_tag(moving_household_items_path, method: :get, remote: true) do
+    = hidden_field_tag :filter, nil
+    = submit_tag 'All', name: nil, class: "btn btn-xs btn-info" 
+  / For each tag, filter by tag when clicked.
+  - moving.tags.each do |tag|
+    = form_tag(moving_household_items_path, method: :get, remote: true) do
+      = hidden_field_tag :filter, tag.name
+      = submit_tag tag.name.capitalize, name: nil, class: "btn btn-xs btn-info"
+
+css:
+  /*The container of this component*/
+  .moving_filter_forms {
+    padding-bottom: 1rem;
+  }
+  /*Place the forms inline and alow some space in between*/
+  .moving_filter_forms > form {
+    display: inline-block;
+    width: auto;
+    margin: 0 .3rem .3rem 0;
+  }
+  /*Emphasize the active button*/
+  .moving_filter_forms input[type=submit].active {
+    border: 1px solid blue;
+  }
+  
+javascript:
+  $(document).ready(function(){
+    // Obtain teference to all the buttons.
+    var $buttons = $('.moving_filter_forms input[type=submit]');
+    
+    // Add click listner to all the buttons.
+    $buttons.on('click', function(){
+      // Put the clicked button to active state.
+      $buttons.removeClass('active')
+      $(this).addClass('active')
+    })
+  })

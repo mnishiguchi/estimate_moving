@@ -6,8 +6,15 @@
     .col-xs-6
       .total_volume.panel.panel-default
         .panel-heading Total volume
-        .panel-body #{household_items.sum(:volume)} cft
+        .panel-body 
+          span.value #{household_items.sum(:volume)} cft
     .col-xs-6
       .total_quantity.panel.panel-default
         .panel-heading Total item count
-        .panel-body #{household_items.sum(:quantity)} pcs
+        .panel-body
+          span.value #{household_items.sum(:quantity)} pcs
+
+css:
+  .moving_stats .value {
+    font-size: 3rem;
+  }
