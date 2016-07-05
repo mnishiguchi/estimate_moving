@@ -1,32 +1,30 @@
--# Requires:
+-# It has buttons to make an asynchronous request for filtering the list.
+-# Required props:
 -# * moving
 -# * household_items
 
-
 .moving_filter_forms
   / For all items: no filter applied.
-  = form_tag(moving_household_items_path, method: :get, remote: true) do
-    = hidden_field_tag :filter, nil
-    = submit_tag 'All', name: nil, class: "btn btn-xs btn-info" 
+  = link_to 'All', moving_household_items_path, 
+    method: :get, remote: true, class: "btn btn-xs btn-info" 
   / For each tag, filter by tag when clicked.
   - moving.tags.each do |tag|
-    = form_tag(moving_household_items_path, method: :get, remote: true) do
-      = hidden_field_tag :filter, tag.name
-      = submit_tag tag.name.capitalize, name: nil, class: "btn btn-xs btn-info"
+    = link_to tag.name, moving_household_items_path(filter: tag.name), 
+      method: :get, remote: true, class: "btn btn-xs btn-info" 
 
 css:
   /*The container of this component*/
   .moving_filter_forms {
     padding-bottom: 1rem;
   }
-  /*Place the forms inline and alow some space in between*/
-  .moving_filter_forms > form {
+  /*Place the buttons inline and alow some space in between*/
+  .moving_filter_forms > a {
     display: inline-block;
     width: auto;
     margin: 0 .3rem .3rem 0;
   }
   /*Emphasize the active button*/
-  .moving_filter_forms input[type=submit].active {
+  .moving_filter_forms a.active {
     border: 1px solid blue;
   }
   

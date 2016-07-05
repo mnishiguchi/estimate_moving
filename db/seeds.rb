@@ -8,6 +8,9 @@
 
 require 'ffaker'
 
+# To obtain data using item_volume_hash helper. 
+include HouseholdItemsHelper
+
 # Destroy old data.
 ItemTag.destroy_all
 Tag.destroy_all
@@ -40,17 +43,20 @@ description = FFaker::Lorem.paragraph(1)
 masa.movings.create!(name: name, description: description)
 
 # Create items on a moving project.
+items = item_volume_hash
+item_names = items.keys
 moving = masa.movings.first
-moving.household_items.create!([
-  { name: "bad", volume: 100, quantity: 1, description: FFaker::Lorem.paragraph(1) },
-  { name: "floor_lamp", volume: 5, quantity: 1, description: FFaker::Lorem.paragraph(1) },
-  { name: "sofa", volume: 80, quantity: 1, description: FFaker::Lorem.paragraph(1) },
-  { name: "chair", volume: 8, quantity: 1, description: FFaker::Lorem.paragraph(1) },
-  { name: "desk", volume: 6, quantity: 1, description: FFaker::Lorem.paragraph(1) }
-])
+30.times do
+  name = item_names.sample
+  volume = items[name]
+  quantity = [1,2,3,4].sample
+  moving.household_items.create! name: name, volume: volume, quantity: quantity, description: FFaker::Lorem.paragraph(1)
+end
 
 # Create tags on household_items
-tag_names = %w(kitchen living_room bed_room bathroom)
-HouseholdItem.all.each do |item|
-  item.tags.create name: tag_names.sample
+tag_names_1 = %w(kitchen living_room bed_room bathroom closet)
+tag_names_2 = %w(a b c)
+moving.household_items.each do |item|
+  tags_for_this = tag_names_1.sample + ',' + tag_names_2.sample
+  item.all_tags = tags_for_this
 end

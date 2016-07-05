@@ -5,6 +5,8 @@ ul.ui-autocomplete {
   padding: 0;
   border: solid 1px #999;
   cursor: default;
+  max-height: 50vh;
+  overflow: auto;
   li {
     background-color: #FFF;
     border-top: solid 1px #DDD;
