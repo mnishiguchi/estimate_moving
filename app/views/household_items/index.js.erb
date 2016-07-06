@@ -5,8 +5,8 @@
 $(document).ready(function(){
 
   // Obtain the new data for the stats.
-  var volume   = <%= @household_items.sum(:volume) %>
-  var quantity = <%= @household_items.sum(:quantity) %>
+  var volume   = <%= @volume %>
+  var quantity = <%= @quantity %>
 
   // Detect the tag name that was clicked based on params[:filter].
   var tagName = "<%= @tag_name %>"

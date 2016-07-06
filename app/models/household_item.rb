@@ -24,6 +24,8 @@ class HouseholdItem < ApplicationRecord
   validates :description, length: { maximum: 255 }
 
   before_save :downcase_name  # Standardizes on all lower-case words.
+  before_save :calculate_volume_using_correct_unit
+  before_update :calculate_volume_using_correct_unit
 
   default_scope -> { order(:updated_at).reverse_order }
 
@@ -53,7 +55,29 @@ class HouseholdItem < ApplicationRecord
     self.tags.map(&:name).join(", ")
   end
 
+  def volume_m3
+    ft3_to_m3(self.volume)
+  end
+
+  def volume_ft3
+    self.volume
+  end
+
+  def volume_in_correct_unit
+    case self.moving.unit
+    when "metric" then volume_m3
+    when "us"     then volume_ft3
+    else volume_ft3
+    end
+  end
+
   private
+
+    def calculate_volume_using_correct_unit
+      if self.moving.unit == "metric"
+        self.volume = m3_to_ft3(self.volume)
+      end
+    end
 
     def downcase_name
       self.name.downcase!

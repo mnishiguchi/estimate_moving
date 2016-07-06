@@ -17,7 +17,7 @@
         - household_items.select(&:valid?).each do |item|
           tr
             td = item.name.capitalize
-            td = item.volume
+            td = item.volume_in_correct_unit
             td = item.quantity
             td = item.all_tags
             td = item.description

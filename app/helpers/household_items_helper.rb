@@ -18,9 +18,10 @@ module HouseholdItemsHelper
 
     # Create an array of name-value pairs and sort it by value.
     data_pairs = tag_names.map do |tag_name|
+      volume = moving.volume_by_tag(tag_name)
       [
         tag_name,
-        moving.volume_by_tag(tag_name)
+        moving.convert_volume_to_correct_unit(volume)
       ]
     end.sort { |a, b| b[1] <=> a[1] }
 

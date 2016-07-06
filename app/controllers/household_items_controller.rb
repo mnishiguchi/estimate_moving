@@ -10,6 +10,7 @@ class HouseholdItemsController < ApplicationController
   # If requested, perform the specified filtering.
   def index
     respond_to do |format|
+
       # For the initial request.
       format.html do
         @household_items = @moving.household_items
@@ -33,6 +34,11 @@ class HouseholdItemsController < ApplicationController
           @household_items = @moving.household_items
           @tag_name = "All items"
         end
+
+        # Prepare data to embed in our Javascript code.
+        volume_sum = @household_items.sum(:volume)
+        @volume    = @moving.convert_volume_to_correct_unit(volume_sum)
+        @quantity  = @household_items.sum(:quantity)
       end
     end
   end

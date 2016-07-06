@@ -39,4 +39,12 @@ class Moving < ApplicationRecord
     when "metric" then "M3"
     end
   end
+
+  def convert_volume_to_correct_unit(value)
+    case self.unit
+    when "metric" then ft3_to_m3(value)
+    when "us"     then value
+    else value
+    end
+  end
 end
