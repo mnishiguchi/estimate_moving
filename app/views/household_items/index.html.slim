@@ -48,7 +48,7 @@ javascript:
             text: 'Volume under each tag'
         },
         xAxis: {
-            categories: data[0],
+            categories: data["names"],
             title: {
                 text: null
             }
@@ -80,7 +80,7 @@ javascript:
         },
         series: [{
             name: 'volume',
-            data: data[1]
+            data: data["values"]
         }]
     });
   });

@@ -12,20 +12,25 @@ module HouseholdItemsHelper
     JSON.parse(item_volume_json)
   end
 
-  # Return json data that is required for the HighCharts.js bar chart.
-  # Data structure:
-  # - categories: ['Africa', 'America', 'Asia', 'Europe', 'Oceania']
-  # - data: [107, 31, 635, 203, 2]
   def json_for_bar_chart(moving)
     # Obtain all the tag names of the specified moving.
     tag_names = moving.tags.map(&:name)
 
-    # Obtain the values corresponding to each tag name.
-    data_hash = tag_names.map { |tag_name| moving.volume_by_tag(tag_name) }
+    # Create an array of name-value pairs and sort it by value.
+    data_pairs = tag_names.map do |tag_name|
+      [
+        tag_name,
+        moving.volume_by_tag(tag_name)
+      ]
+    end.sort { |a, b| b[1] <=> a[1] }
 
-    # Return array of arrays.
-    [tag_names, data_hash]
+    # Unzip the array of arrays into two arrays.
+    names, values = data_pairs.transpose
+
+    # Return a json object that contains two arrays.
+    { names: names, values: values }.to_json
   end
+
 
   # Return json data that is required for the HighCharts.js pie chart.
   def json_for_pie_chart(moving)
