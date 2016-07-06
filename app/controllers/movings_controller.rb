@@ -50,7 +50,7 @@ class MovingsController < ApplicationController
   private
 
     def moving_params
-      params.require(:moving).permit(:name, :description)
+      params.require(:moving).permit(:name, :unit, :description)
     end
 
     # Make sure that we access movings through current_user.

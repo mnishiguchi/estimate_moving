@@ -11,7 +11,7 @@ nav.navbar.navbar-inverse.navbar-static-top
     nav.collapse.navbar-collapse#hamburger
       ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
-          li= link_to fa_icon("fw cog", text: "Settings"), edit_user_registration_path
+          li= link_to fa_icon("fw user", text: "account"), edit_user_registration_path
           li= link_to fa_icon("fw sign-out ", text: "Log out"), destroy_user_session_path, method: :delete
         - else
           li= link_to "Home",  root_path

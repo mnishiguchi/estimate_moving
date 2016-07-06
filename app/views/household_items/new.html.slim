@@ -3,7 +3,7 @@
 h1.h2
   small Add item to 
   = link_to @moving.name.capitalize, moving_path(@moving)
-
+hr
 .row
   .col-sm-4
     / This is a nested route.
@@ -15,7 +15,8 @@ h1.h2
         .col-xs-6
           = f.input :quantity, input_html: { min: '1', step: '1' }
       
-      a#toggle_calculator[href="#"] Toggle volume calculator
+      a#toggle_calculator.text-muted[href="#"] 
+        ' Toggle volume calculator #{fa_icon "caret-down"}
       = render "volume_calculator"
       
       = f.input :all_tags, placeholder: "Input tags separated by tags..."

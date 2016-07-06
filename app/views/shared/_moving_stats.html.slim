@@ -5,15 +5,15 @@
 .moving_stats
   .panel.panel-default
     .panel-heading
-      #moving_stats_heading.h4 All items
-    .panel-body
       .row
-        .col-xs-6
+        .col-xs-4
+          #moving_stats_heading.h4 All items
+        .col-xs-4
           #moving_stats_volume
             span.value #{household_items.sum(:volume)}
             span.unit
-              |  cft
-        .col-xs-6
+              |  #{@moving.volume_unit_string}
+        .col-xs-4
           #moving_stats_quantity
             span.value #{household_items.sum(:quantity)}
             span.unit 

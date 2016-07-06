@@ -127,6 +127,12 @@ end
 
 - [http://www.highcharts.com/](http://www.highcharts.com/)
 
+####   [ActiveRecord::Enum](http://edgeapi.rubyonrails.org/classes/ActiveRecord/Enum.html)
+
+#### Modal data is not updated after create/updated
+- Check `strong params` whitelist.
+
+
 ---
 
 ## References
