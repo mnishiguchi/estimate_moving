@@ -23,10 +23,8 @@ require 'support/controller_macros'
 # end with _spec.rb. You can configure this pattern with the --pattern
 # option on the command line or in ~/.rspec, .rspec or `.rspec-local`.
 
-# The following line is provided for convenience purposes. It has the downside
-# of increasing the boot-up time by auto-requiring all files in the support
-# directory. Alternatively, in the individual `*_spec.rb` files, manually
-# require only the support files necessary.
+# Requires supporting ruby files with custom matchers and macros, etc,
+# in spec/support/ and its subdirectories.
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
 # Checks for pending migration and applies them before tests are run.
@@ -35,7 +33,7 @@ ActiveRecord::Migration.maintain_test_schema!
 
 
 # ---
-# Include helpers.
+# Include app helpers.
 # ---
 
 RSpec.configure do |config|
@@ -57,11 +55,32 @@ end
 # Set up devise.
 # ---
 
+# include Warden::Test::Helpers
+# Warden.test_mode!
+
 RSpec.configure do |config|
+
+  # https://github.com/plataformatec/devise/wiki/How-To:-Test-with-Capybara
+  config.include Warden::Test::Helpers
+  config.before :suite do
+    Warden.test_mode!
+  end
+  config.after :each do
+    Warden.test_reset!
+  end
+
   # NOTE: Devise::TestHelpers` is deprecated
-  # config.include Devise::TestHelpers, :type => :controller
-  config.include Devise::Test::ControllerHelpers, :type => :controller
-  config.extend ControllerMacros, :type => :controller
+  # config.include Devise::TestHelpers, type: :controller
+  config.include Devise::Test::ControllerHelpers, type: :controller
+  config.extend ControllerMacros, type: :controller
+end
+
+# ---
+# Set up factory girl
+# ---
+
+RSpec.configure do |config|
+  config.include FactoryGirl::Syntax::Methods
 end
 
 # ---
@@ -76,14 +95,17 @@ Shoulda::Matchers.configure do |config|
 end
 
 # ---
-# Set up poltergeist.
+# Set up capybara / javascript_driver.
 # ---
 
-Capybara.javascript_driver = :poltergeist
+# Capybara.javascript_driver = :chrome
+# Capybara.register_driver :chrome do |app|
+#   Capybara::Selenium::Driver.new(app, :browser => :chrome)
+# end
 
-options = { js_errors: false }
+Capybara.javascript_driver = :poltergeist
 Capybara.register_driver :poltergeist do |app|
-  Capybara::Poltergeist::Driver.new(app, options)
+  Capybara::Poltergeist::Driver.new(app, js_errors: false)
 end
 
 # ---
@@ -126,7 +148,7 @@ RSpec.configure do |config|
   # You can disable this behaviour by removing the line below, and instead
   # explicitly tag your specs with their type, e.g.:
   #
-  #     RSpec.describe UsersController, :type => :controller do
+  #     RSpec.describe UsersController, type: :controller do
   #       # ...
   #     end
   #

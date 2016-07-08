@@ -11,7 +11,7 @@
         method: :get, remote: true, class: "btn btn-sm btn-info" 
       / For each tag, filter by tag when clicked.
       - moving.tags.each do |tag|
-        = link_to tag.name, moving_household_items_path(filter: tag.name), 
+        = link_to tag.name.capitalize, moving_household_items_path(filter: tag.name), 
           method: :get, remote: true, class: "btn btn-sm btn-info" 
 
 css:

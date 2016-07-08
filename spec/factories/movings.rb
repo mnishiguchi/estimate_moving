@@ -13,7 +13,7 @@
 
 FactoryGirl.define do
   factory :moving do
-    name "My moving to a nice apartment"
+    sequence(:name) { |n| "My moving #{n}" }
     description "Location is DC"
     unit "us"
     user
