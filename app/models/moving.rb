@@ -29,22 +29,22 @@ class Moving < ApplicationRecord
        .order('tags.name')
   end
 
-  def volume_by_tag(name)
+  def volume_of_tag(name)
     HouseholdItem.tagged_with(name, self.id).sum(:volume)
   end
 
   def volume_unit_string
     case self.unit
-    when "us"     then "cft"
+    when "us"     then "ft3"
     when "metric" then "M3"
     end
   end
 
-  def convert_volume_to_correct_unit(value)
+  def correct_volume(value)
     case self.unit
     when "metric" then ft3_to_m3(value)
     when "us"     then value
-    else value
+    else raise "Invalid unit"
     end
   end
 end

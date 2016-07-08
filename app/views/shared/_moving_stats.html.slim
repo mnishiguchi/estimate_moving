@@ -12,7 +12,7 @@
           #moving_stats_volume
             span.value 
               - volume_sum = household_items.sum(:volume)
-              = moving.convert_volume_to_correct_unit(volume_sum)
+              = moving.correct_volume(volume_sum)
             span.unit
               |  #{@moving.volume_unit_string}
         .col-xs-4

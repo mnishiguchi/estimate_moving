@@ -52,7 +52,7 @@ javascript:
     function autocompleteNameAndVolume() {
       // Write the item-volume-json data directly on the HTML at server side.
       // The data is an object of key-value pairs (name: volume)
-      var data = #{raw item_volume_json} //<== Ruby
+      var data = #{raw item_volume_json(@moving)} //<== Ruby
       var itemNames = Object.keys(data)
     
       // Configure the autocomplete.

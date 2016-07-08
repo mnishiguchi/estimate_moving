@@ -23,22 +23,24 @@ class HouseholdItemsController < ApplicationController
 
       # For async requests.
       format.js do
+        # Prepare data to be embedded in our Javascript code.
+        @data = {}
+
         if params[:filter].present?
           # Search for the items that belong to the moving and are taggged with the specified tag name.
           @household_items = HouseholdItem.tagged_with(params[:filter], params[:moving_id])
 
           # Detect the tag name that was clicked based on params[:filter].
-          @tag_name = params[:filter].capitalize
+          @data[:tag_name] = params[:filter].capitalize
         else
           # Obtain all the items that belong to the moving.
           @household_items = @moving.household_items
-          @tag_name = "All items"
+          @data[:tag_name] = "All items"
         end
 
-        # Prepare data to embed in our Javascript code.
         volume_sum = @household_items.sum(:volume)
-        @volume    = @moving.convert_volume_to_correct_unit(volume_sum)
-        @quantity  = @household_items.sum(:quantity)
+        @data[:volume]   = @moving.correct_volume(volume_sum)
+        @data[:quantity] = @household_items.sum(:quantity)
       end
     end
   end

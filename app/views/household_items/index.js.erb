@@ -5,11 +5,11 @@
 $(document).ready(function(){
 
   // Obtain the new data for the stats.
-  var volume   = <%= @volume %>
-  var quantity = <%= @quantity %>
+  var volume   = <%= @data[:volume] %>
+  var quantity = <%= @data[:quantity] %>
 
   // Detect the tag name that was clicked based on params[:filter].
-  var tagName = "<%= @tag_name %>"
+  var tagName = "<%= @data[:tag_name] %>"
 
   // Update the stats headings.
   $("#moving_stats_heading").html(tagName)
