@@ -1,40 +1,38 @@
 require 'rails_helper'
 
 RSpec.describe HouseholdItemsHelper, type: :helper do
+  
+  # Load the data from a file.
   let!(:json_data) { File.read("#{Rails.root}/config/household_items.json") }
 
   describe "Load correct json data" do
 
-    it "contains correct item names" do
-      expect(json_data).to have_json_path("tv")
-      expect(json_data).to have_json_path("armchair, large")
-    end
+    subject { json_data }
 
-    it "has an interger-type value for each key" do
-      expect(json_data).to have_json_type(Integer).at_path("tv")
-      expect(json_data).to have_json_type(Integer).at_path("armchair, large")
-    end
+    it { is_expected.to have_json_path("tv") }
+    it { is_expected.to have_json_path("armchair, large") }
+    it { is_expected.to have_json_type(Integer).at_path("tv") }
+    it { is_expected.to have_json_type(Integer).at_path("armchair, large") }
   end
 
   describe "item_volume_json(moving)" do
     let!(:moving) { FactoryGirl.create(:moving) }
 
-    subject { item_volume_json(moving) }
+    subject do
+      result = item_volume_json(moving)
+      parse_json(result)["tv"]
+    end
 
     context "unit: us" do
       before(:each) { moving.update!(unit: "us") }
 
-      it "returns json with ft3 values" do
-        expect(parse_json(subject)["tv"]).to eq(25)
-      end
+      it { is_expected.to eq(25) }
     end
 
     context "unit: metric" do
       before(:each) { moving.update!(unit: "metric") }
 
-      it "returns json with m3 values" do
-        expect(parse_json(subject)["tv"]).to eq(0.71)
-      end
+      it { is_expected.to eq(0.71) }
     end
   end
 
@@ -53,14 +51,11 @@ RSpec.describe HouseholdItemsHelper, type: :helper do
 
     subject { json_for_bar_chart(@moving) }
 
-    it "contains correct keys (names & values)" do
-      expect(subject).to have_json_path("names")
-      expect(subject).to have_json_path("values")
-    end
-
-    it "has an array for each key" do
-      expect(subject).to have_json_type(Array).at_path("names")
-      expect(subject).to have_json_type(Array).at_path("values")
-    end
+    # Contains correct keys (names & values)
+    it { is_expected.to have_json_path("names") }
+    it { is_expected.to have_json_path("values") }
+    # Has an array for each key.
+    it { is_expected.to have_json_type(Array).at_path("names") }
+    it { is_expected.to have_json_type(Array).at_path("values") }
   end
 end
