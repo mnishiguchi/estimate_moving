@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-  # To use utitlity methods to convert between m3 and ft3.
   include MovingsHelper
   include HouseholdItemsHelper
 

@@ -8,10 +8,12 @@ require 'spec_helper'
 require 'rspec/rails'
 
 # Add additional requires below this line. Rails is not loaded until this point!
-require 'devise'
-require 'support/controller_macros'
-require 'shoulda/matchers'
+# NOTE: Make sure that you require gems before configuring them.
 require 'capybara/poltergeist'
+require 'devise'
+require 'json_spec'
+require 'shoulda/matchers'
+require 'support/controller_macros'
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -32,32 +34,82 @@ require 'capybara/poltergeist'
 # If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.maintain_test_schema!
 
-# === begin devise ===
+
+# ---
+# Include helpers.
+# ---
+
+RSpec.configure do |config|
+  config.include ApplicationHelper
+  config.include MovingsHelper
+  config.include HouseholdItemsHelper
+end
+
+# ---
+# Set up json_spec.
+# ---
+
+# https://github.com/collectiveidea/json_spec
+RSpec.configure do |config|
+  config.include JsonSpec::Helpers
+end
+
+# ---
+# Set up devise.
+# ---
+
 RSpec.configure do |config|
   # NOTE: Devise::TestHelpers` is deprecated
   # config.include Devise::TestHelpers, :type => :controller
   config.include Devise::Test::ControllerHelpers, :type => :controller
   config.extend ControllerMacros, :type => :controller
 end
-# === end devise ===
 
-# === begin shoulda-matchers ===
+# ---
+# Set up shoulda-matchers.
+# ---
+
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
     with.test_framework :rspec
     with.library :rails
   end
 end
-# === end shoulda-matchers ===
 
-# === begin poltergeist ===
+# ---
+# Set up poltergeist.
+# ---
+
 Capybara.javascript_driver = :poltergeist
 
 options = { js_errors: false }
 Capybara.register_driver :poltergeist do |app|
   Capybara::Poltergeist::Driver.new(app, options)
 end
-# === end poltergeist ===
+
+# ---
+# Set up database cleaner.
+# ---
+
+RSpec.configure do |config|
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.around(:each) do |example|
+    DatabaseCleaner.cleaning do
+      example.run
+    end
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
+end
+
+# ---
+# ---
 
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures

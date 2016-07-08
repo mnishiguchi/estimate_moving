@@ -133,6 +133,10 @@ end
 - Check `strong params` whitelist.
 
 
+#### FactoryGirl error: “Email has already been taken.”
+
+- Use DatabaseCleaner
+
 ---
 
 ## References

@@ -56,6 +56,7 @@ end
 group :test do
   gem 'capybara'
   gem 'database_cleaner'
+  gem 'json_spec', '~> 1.1', '>= 1.1.4'
   gem "poltergeist"
   gem 'launchy'
   gem 'selenium-webdriver'

@@ -1,15 +1,18 @@
 require 'rails_helper'
 
-# Specs in this file have access to a helper object that includes
-# the MovingsHelper. For example:
-#
-# describe MovingsHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       expect(helper.concat_strings("this","that")).to eq("this that")
-#     end
-#   end
-# end
 RSpec.describe MovingsHelper, type: :helper do
-  # pending "add some examples to (or delete) #{__FILE__}"
+
+  describe "m3_to_ft3" do
+    it "returns a correct value" do
+      volume_m3 = 5.5
+      expect(m3_to_ft3(volume_m3)).to be_within(0.01).of(194.23)
+    end
+  end
+
+  describe "ft3_to_m3" do
+    it "returns a correct value" do
+      volume_ft3 = 12
+      expect(ft3_to_m3(volume_ft3)).to be_within(0.01).of(0.34)
+    end
+  end
 end
