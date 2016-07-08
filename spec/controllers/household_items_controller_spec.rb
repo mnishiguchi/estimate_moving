@@ -10,6 +10,7 @@ RSpec.describe HouseholdItemsController, type: :controller do
       5.times do
         moving.household_items.create(FactoryGirl.attributes_for(:household_item))
       end
+      
       moving
     end
 
@@ -90,7 +91,7 @@ RSpec.describe HouseholdItemsController, type: :controller do
     login_user # Defined in `spec/support/controller_macros.rb`
 
     # Create items on that user.
-    let! :moving do
+    let!(:moving) do
       moving = subject.current_user.movings.create(FactoryGirl.attributes_for(:moving))
       5.times do
         moving.household_items.create(FactoryGirl.attributes_for(:household_item))
@@ -160,6 +161,7 @@ RSpec.describe HouseholdItemsController, type: :controller do
         user = subject.current_user
         moving = user.movings.create(FactoryGirl.attributes_for(:moving))
       end
+
       it "decrements the HouseholdItem count, then redirects to the movings page" do
         expect{
           id = moving.household_items.first.id
