@@ -16,9 +16,6 @@
 # Ignore Byebug command history file.
 .byebug_history
 
-# Ignore public directory.
-/public
-
 # Ignore node_modules directory.
 /node_modules
 

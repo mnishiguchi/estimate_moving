@@ -1,0 +1,9 @@
+development:
+  secret_key: 88a7863e41ad163c718d3df13428f3ea12b9539795e4f02fe10a951dd86b3065f3437447395ee1a7661146f6c74cba0b22e876ec44d7cfd04ecfda15b0b5275a
+test:
+  secret_key: 88a7863e41ad163c718d3df13428f3ea12b9539795e4f02fe10a951dd86b3065f3437447395ee1a7661146f6c74cba0b22e876ec44d7cfd04ecfda15b0b5275a
+
+# Do not keep production secrets in the repository,
+# instead read values from the environment.
+production:
+  secret_key: <%= ENV["DEVISE_SECRET_KEY"] %>

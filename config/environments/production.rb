@@ -55,11 +55,23 @@ Rails.application.configure do
   # Use a real queuing backend for Active Job (and separate queues per environment)
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "estimate_moving_#{Rails.env}"
-  config.action_mailer.perform_caching = false
 
-  # Ignore bad email addresses and do not raise email delivery errors.
+  # ==> Mailer
+  config.action_mailer.delivery_method = :smtp
+  host = 'estimate-moving.herokuapp.com'
+  config.action_mailer.default_url_options = { host: host }
+  config.action_mailer.perform_caching = false
+  ActionMailer::Base.smtp_settings = {
+    :address        => 'smtp.sendgrid.net',
+    :port           => '587',
+    :authentication => :plain,
+    :user_name      => ENV['SENDGRID_USERNAME'],
+    :password       => ENV['SENDGRID_PASSWORD'],
+    :domain         => 'heroku.com',
+    :enable_starttls_auto => true
+  }
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
-  # config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).

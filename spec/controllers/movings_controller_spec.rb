@@ -102,10 +102,8 @@ RSpec.describe MovingsController, type: :controller do
     # UPDATE
     describe "PATCH /movings/:id" do
       let(:moving_params) do
-        moving_params = FactoryGirl.attributes_for(:moving)
-        moving_params[:name]        = "new name"
-        moving_params[:description] = "new description"
-        moving_params
+        FactoryGirl.attributes_for(:moving)
+          .merge(name: "new name", description: "new description")
       end
 
       before(:each) { patch :update, id: moving.id, moving: moving_params }

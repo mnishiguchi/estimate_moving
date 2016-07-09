@@ -88,7 +88,8 @@ class HouseholdItemsController < ApplicationController
   private
 
     def household_item_params
-      params.require(:household_item).permit(:name, :volume, :quantity, :all_tags, :description, :moving_id)
+      accessible = [:name, :volume, :quantity, :all_tags, :description, :moving_id]
+      params.require(:household_item).permit(accessible)
     end
 
     # Make sure that we access movings through current_user.

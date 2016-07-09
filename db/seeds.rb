@@ -8,25 +8,19 @@
 
 require 'ffaker'
 
-# To obtain data using item_volume_hash helper.
-include HouseholdItemsHelper
-
 # Destroy old data.
 ItemTag.destroy_all
 Tag.destroy_all
 HouseholdItem.destroy_all
 Moving.destroy_all
+SocialProfile.destroy_all
 User.destroy_all
 
 # Create sample users.
-masa = User.create!(
-  username: "Masatoshi",
-  email:    "nishiguchi.masa@gmail.com",
-  password: "password"
-)
 example_user = User.create!(
   username: "Example user",
   email:    "user@example.com",
+  confirmed_at: Time.zone.now,
   password: "password"
 )
 # 3.times do |n|
@@ -38,11 +32,6 @@ example_user = User.create!(
 # end
 
 # Create a moving project on a user.
-masa.movings.create!(
-  name:        FFaker::Address.city,
-  description: FFaker::Lorem.sentence,
-  unit: 0
-)
 example_user.movings.create!(
   name:        FFaker::Address.city,
   description: FFaker::Lorem.sentence,
@@ -50,12 +39,11 @@ example_user.movings.create!(
 )
 
 # Obtain data.
-items      = item_volume_hash
+items      = YAML.load_file("#{Rails.root}/config/household_items.yml")
 item_names = items.keys
 
 # For the first two users...
-User.order(:created_at).take(2).each do |user|
-
+User.order(:created_at).take(1).each do |user|
   # Create items on a moving project.
   moving   = user.movings.first
   30.times do
@@ -68,15 +56,12 @@ User.order(:created_at).take(2).each do |user|
       quantity:    quantity,
       description: FFaker::Lorem.sentence
     )
+    break if (0..9).to_a.sample == 0
   end
 
   # Create tags on household_items
-  tag_names_1 = ["kitchen", "living room", "bed room", "bathroom", "closet"]
-  # tag_names_2 = %w(a b c)
-
+  tag_names = ["kitchen", "living room", "bed room", "bathroom", "closet"]
   moving.household_items.each do |item|
-    item.all_tags = tag_names_1.sample
-    # tags_for_this = tag_names_1.sample + ',' + tag_names_2.sample
-    # item.all_tags = tags_for_this
+    item.all_tags = tag_names.sample
   end
 end

@@ -1,0 +1,10 @@
+- connected = current_user.try(:social_profile, "twitter")
+- if connected
+  = link_to fa_icon("fw twitter", text: "Disconnect"),
+    social_profile_path(current_user.social_profile(:twitter)), method: :delete,
+    data: { confirm: "Are you sure?" },
+    class: "twitter_connect"
+- else
+  = link_to fa_icon("fw twitter", text: "Connect"),
+    user_twitter_omniauth_authorize_path,
+    class: "twitter_connect"
