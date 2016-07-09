@@ -9,13 +9,14 @@ module HouseholdItemsHelper
 
     # Read a file.
     # items_json = File.read(File.dirname(__FILE__) + '/household_items.json')
-    items_json = File.read("#{Rails.root}/config/household_items.json")
+    # items_json = File.read("#{Rails.root}/config/household_items.json")
+    ft3_hash = YAML.load_file("#{Rails.root}/config/household_items.yml")
 
     # Convert volumes to an appropriate unit.
     case moving.unit
-    when "us" then items_json
+    when "us" then ft3_hash.to_json
     when "metric"
-      metric_json = JSON.parse(items_json).map do |name, volume|
+      m3_json = ft3_hash.map do |name, volume|
         [ name, ft3_to_m3(volume) ]
       end.to_h.to_json
     else

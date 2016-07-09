@@ -1,38 +1,38 @@
 require 'rails_helper'
 
 RSpec.describe HouseholdItemsHelper, type: :helper do
-  
+
   # Load the data from a file.
-  let!(:json_data) { File.read("#{Rails.root}/config/household_items.json") }
+  let!(:ft3_hash) { YAML.load_file("#{Rails.root}/config/household_items.yml") }
 
-  describe "Load correct json data" do
-
-    subject { json_data }
-
-    it { is_expected.to have_json_path("tv") }
-    it { is_expected.to have_json_path("armchair, large") }
-    it { is_expected.to have_json_type(Integer).at_path("tv") }
-    it { is_expected.to have_json_type(Integer).at_path("armchair, large") }
+  describe "data hash" do
+    it "is a hash of name-volume pairs" do
+      expect(ft3_hash["tv"]).not_to eq nil
+      expect(ft3_hash["tv"]).to be_a Fixnum
+      expect(ft3_hash["curtain"]).not_to eq nil
+      expect(ft3_hash["curtain"]).to be_a Fixnum
+    end
   end
 
   describe "item_volume_json(moving)" do
-    let!(:moving) { FactoryGirl.create(:moving) }
+    let(:moving) { FactoryGirl.create(:moving) }
 
-    subject do
-      result = item_volume_json(moving)
-      parse_json(result)["tv"]
+    subject(:json) do
+      item_volume_json(moving)
     end
+
+    it { expect(subject).to have_json_path("tv") }
 
     context "unit: us" do
       before(:each) { moving.update!(unit: "us") }
 
-      it { is_expected.to eq(25) }
+      it { expect(parse_json(json)["tv"]).to eq(25) }
     end
 
     context "unit: metric" do
       before(:each) { moving.update!(unit: "metric") }
 
-      it { is_expected.to eq(0.71) }
+      it { expect(parse_json(json)["tv"]).to eq(0.71) }
     end
   end
 
