@@ -35,6 +35,7 @@ group :development, :test do
   gem 'awesome_print'
   gem 'binding_of_caller'
   gem 'byebug', platform: :mri # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'capybara'
   gem 'dotenv-rails' # Autoloads dotenv in Rails.
   gem 'factory_girl_rails'
   gem 'guard-rspec'
@@ -54,7 +55,6 @@ group :development do
 end
 
 group :test do
-  gem 'capybara'
   gem 'database_cleaner'
   gem 'json_spec', '~> 1.1', '>= 1.1.4'
   gem "poltergeist"

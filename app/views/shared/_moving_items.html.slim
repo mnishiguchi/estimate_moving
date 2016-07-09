@@ -3,12 +3,12 @@
 -# * household_items
 #moving_items
   .table-responsive
-    table.table
+    table.table.table-striped
       thead
         tr
           th Name 
-          th Volume
-          th Quantity
+          th = moving.volume_unit_string
+          th pcs
           th Tags
           th Description
           th
