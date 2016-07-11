@@ -90,11 +90,13 @@ household_items.map { |item| item.tags }.flatten.map(&:name).uniq
 
 [Select values through many to many relationship in active record using “where”](http://stackoverflow.com/a/21563632/3837223)
 
+
 #### Showing error messages in flash
 
 ```rb
 flash.now[:danger] = @household_item.errors.full_messages.to_sentence
 ```
+
 
 #### Get the referer url of a previous page
 
@@ -102,11 +104,13 @@ flash.now[:danger] = @household_item.errors.full_messages.to_sentence
 request.referer
 ```
 
+
 #### Jumping to an anchor after redirect
 
 ```rb
 redirect_to moving_url(@moving, anchor: 'add_item')
 ```
+
 
 #### Adding custom params to query string in a form
 
@@ -119,10 +123,12 @@ redirect_to moving_url(@moving, anchor: 'add_item')
 http://localhost:3000/movings/1/household_items?type=Hello
 ```
 
+
 #### jQuery ui-autocomplete
 
 - [https://github.com/joliss/jquery-ui-rails](https://github.com/joliss/jquery-ui-rails)
 - [https://jqueryui.com/autocomplete/](https://jqueryui.com/autocomplete/)
+
 
 #### Charts/graphs
 
@@ -141,35 +147,3 @@ http://localhost:3000/movings/1/household_items?type=Hello
 
 #### ActiveRecord/Store vs PostgreSQL json vs PostgreSQL hstore
 - [ActiveRecord/Store](http://api.rubyonrails.org/classes/ActiveRecord/Store.html)
-
-#### Error reading a yaml file
-- Yaml is picky about syntax. Keep it `simple` rather than `dry`.
-
-```yml
-development:
-  twitter:
-    key: NiNMNOb5pCuO0TrKGNA0syme5
-    secret: UUn9ddCoQW6amdF0vkocggsvExFmlf1lV4kAWMK8vIxeJB0br6
-test:
-  twitter:
-    key: NiNMNOb5pCuO0TrKGNA0syme5
-    secret: UUn9ddCoQW6amdF0vkocggsvExFmlf1lV4kAWMK8vIxeJB0br6
-production:
-  twitter:
-    key: NiNMNOb5pCuO0TrKGNA0syme5
-    secret: UUn9ddCoQW6amdF0vkocggsvExFmlf1lV4kAWMK8vIxeJB0br6
-```
-
-
----
-
-##  Heroku: `! [remote rejected] master -> master (pre-receive hook declined)
-error: failed to push some refs to ...`
-
-- Make sure `config` and `public` directories are tracked by Git.
-
----
-
-## References
-
-- [Devise Authentication in Depth](https://www.sitepoint.com/devise-authentication-in-depth/)

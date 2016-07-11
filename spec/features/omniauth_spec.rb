@@ -7,7 +7,7 @@ feature "OmniAuth interface" do
 
   before { OmniAuth.config.mock_auth[:twitter] = nil }
 
-  describe "new user or non-logged-in user who is not registered with Twitter" do
+  describe "new user or non-logged-in user who did not sign up with Twitter" do
 
     context "when authentication fails" do
       before do
@@ -56,7 +56,7 @@ feature "OmniAuth interface" do
   # ---
   # ---
 
-  describe "non-logged-in user who is registered with Twitter" do
+  describe "non-logged-in user who signed up with Twitter" do
     let!(:user) do
       user = create(:user)
       attrs = attributes_for(:social_profile)
@@ -81,7 +81,7 @@ feature "OmniAuth interface" do
   # ---
   # ---
 
-  describe "logged-in user who is an omniauth first-timer" do
+  xdescribe "logged-in user who is an omniauth first-timer" do
     let(:user) { create(:user) }
 
     before do
@@ -90,19 +90,20 @@ feature "OmniAuth interface" do
       set_omniauth
     end
 
-    it "shows the Twitter connect button" do
-      expect(page).to have_css(".twitter_connect")
-    end
+    it { is_expected.not_to have_css(".twitter_connected_icon") }
 
     it "user's twitter info is not saved in database" do
       expect(user.social_profile(:twitter)).to be_nil
     end
 
-    context "clicking on Twitter button" do
-      before { find(".twitter_connect").click }
+    context "clicking on Twitter button in Account page" do
+      before do
+        visit edit_user_registration_path
+        find(".twitter_connected_icon").click
+      end
 
       it { expect(page).to have_content("Successfully authenticated from Twitter account") }
-      it { expect(page).to have_content("Disconnect") }
+      # it { expect(page).to have_content("Disconnect") }
       it "saves user's twitter info in database" do
         expect(user.social_profile(:twitter)).not_to be_nil
       end
@@ -118,11 +119,10 @@ feature "OmniAuth interface" do
         it { expect(page).to have_content("Disconnect") }
 
         describe "clicking on Twitter button" do
-          before { find(".twitter_connect").click }
+          before { find(".twitter_connected_icon").click }
 
           it { expect(page).to have_content("Disconnected") }
           it { expect(page).to have_content("Connect") }
-          it {  }
 
           it "deletes user's twitter info from database" do
             expect(user.social_profile(:twitter)).to be_nil

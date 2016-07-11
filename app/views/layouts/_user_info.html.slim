@@ -12,5 +12,10 @@ ul.media-list.user_info
 
       .text-muted
         = pluralize(current_user.movings.count, "moving")
-        | &nbsp;|&nbsp;
-        = render "shared/social_connect"
+        
+        - connected = current_user.try(:social_profile, "twitter")
+        - if connected
+          | &nbsp;|&nbsp;
+          = link_to fa_icon("fw twitter"),
+            edit_user_registration_path,
+            class: "twitter_connected_icon"
