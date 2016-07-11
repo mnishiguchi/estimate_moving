@@ -28,6 +28,7 @@ $ rails generate simple_form:install --bootstrap
 ```
 
 #### devise
+
 - [wiki](http://devise.plataformatec.com.br/#the-devise-wiki)
 
 ```
@@ -43,6 +44,16 @@ $ rails db:migrate
 ```
 
 [Create a username field in the users table](https://github.com/plataformatec/devise/wiki/How-To:-Allow-users-to-sign-in-using-their-username-or-email-address#create-a-username-field-in-the-users-table)(optional)
+
+
+Devise - ActionView::Template::Error (Missing host to link to! Please provide the :host parameter, set default_url_options[:host], or set :only_path to true):
+
+- Make sure that you configure mailer for all three environments in `config/environments/*`.
+
+
+Devise - Add confirmable to users later
+
+- [Add confirmable to user](https://github.com/plataformatec/devise/wiki/How-To:-Add-:confirmable-to-Users)
 
 ---
 
@@ -127,10 +138,6 @@ http://localhost:3000/movings/1/household_items?type=Hello
 
 - Use DatabaseCleaner
 
-#### Devise - Add confirmable to users later
-
-- [Add confirmable to user](https://github.com/plataformatec/devise/wiki/How-To:-Add-:confirmable-to-Users)
-
 
 #### ActiveRecord/Store vs PostgreSQL json vs PostgreSQL hstore
 - [ActiveRecord/Store](http://api.rubyonrails.org/classes/ActiveRecord/Store.html)
@@ -153,9 +160,13 @@ production:
     secret: UUn9ddCoQW6amdF0vkocggsvExFmlf1lV4kAWMK8vIxeJB0br6
 ```
 
-#### Devise - ActionView::Template::Error (Missing host to link to! Please provide the :host parameter, set default_url_options[:host], or set :only_path to true):
 
-- Make sure that you configure mailer for all three environments in `config/environments/*`.
+---
+
+##  Heroku: `! [remote rejected] master -> master (pre-receive hook declined)
+error: failed to push some refs to ...`
+
+- Make sure `config` and `public` directories are tracked by Git.
 
 ---
 

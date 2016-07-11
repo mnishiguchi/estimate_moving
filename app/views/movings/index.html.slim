@@ -7,4 +7,9 @@ h1
   |  )
 
 .all_movings
-  = render @movings
+  - if @movings.count > 0
+    = render @movings
+  - else
+    .alert.alert-warning
+      | Currently, you have no moving project.
+      |  #{link_to "Create a moving project.", new_moving_path}
