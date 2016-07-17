@@ -2,23 +2,23 @@
 // via household_items#index action.
 // * It replaces the table content and stats values with filtered data.
 
-$(document).ready(function(){
-
-  // Obtain the new data for the stats.
-  var volume   = <%= @data[:volume] %>
-  var quantity = <%= @data[:quantity] %>
-
-  // Detect the tag name that was clicked based on params[:filter].
-  var tagName = "<%= @data[:tag_name] %>"
-
-  // Update the stats headings.
-  $("#moving_stats_heading").html(tagName)
-
-  // Update the stats values.
-  $("#moving_stats_volume .value").html(volume)
-  $("#moving_stats_quantity .value").html(quantity)
-
-  // Update the table.
-  var tableHTML = "<%= j render 'shared/moving_items', moving: @moving, household_items: @household_items %>"
-  $("#moving_items").html(tableHTML)
-})
+// $(document).ready(function(){
+//
+//   // Obtain the new data for the stats.
+//   var volume   = <%= @data[:volume] %>
+//   var quantity = <%= @data[:quantity] %>
+//
+//   // Detect the tag name that was clicked based on params[:filter].
+//   var tagName = "<%= @data[:tag_name] %>"
+//
+//   // Update the stats headings.
+//   $("#moving_stats_heading").html(tagName)
+//
+//   // Update the stats values.
+//   $("#moving_stats_volume .value").html(volume)
+//   $("#moving_stats_quantity .value").html(quantity)
+//
+//   // Update the table.
+//   var tableHTML = "<%= j render 'shared/moving_items', moving: @moving, household_items: @household_items %>"
+//   $("#moving_items").html(tableHTML)
+// })

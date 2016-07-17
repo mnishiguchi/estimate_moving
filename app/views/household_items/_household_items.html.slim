@@ -1,0 +1,102 @@
+-# Requires:
+-# * moving
+-# * household_items
+
+ul.household_item_filter.nav.nav-tabs[role="tablist"]
+
+  / For all items: no filter applied.
+  li.filter_button[role="presentation"]
+    a.active[role="tab"]
+      | All
+
+  / For each tag, filter by tag when clicked.
+  - moving.tags.each do |tag|
+    li.filter_button[role="presentation"]
+      a[role="tab"]
+        = tag.name.capitalize
+br
+
+css:
+  /*Emphasize the active button*/
+  .household_item_filter a.active,
+  .household_item_filter a.active:hover {
+    border-color: #666;
+    border-bottom: none;
+  }
+  
+
+#household_items
+
+  input.search.form-control[placeholder="Filter this table with a keyword..."]
+  / button.sort[data-sort="household_item__name"] Sort by name
+
+  br
+
+  .table-responsive
+    table.table.table-striped
+      thead
+        tr
+          th Name 
+          th = moving.volume_unit_string
+          th pcs
+          th Tags
+          th Description
+          th
+          th
+      tbody.list
+        - household_items.select(&:valid?).each do |item|
+          tr
+            td.household_item__name = item.name.capitalize
+            td.household_item__volume = item.volume_in_correct_unit
+            td.household_item__quantity = item.quantity
+            td.household_item__tags = item.all_tags
+            td.household_item__description = item.description
+            td = link_to fa_icon("pencil"), edit_moving_household_item_path(moving, item)
+            td = link_to fa_icon("times"), moving_household_item_path(moving, item), method: :delete, data: { confirm: 'Are you sure?' }
+
+javascript:
+
+  // Initialize List.js.
+  $(document).ready(function(){
+  
+    // Set up filterable table powered by List.js.
+    var household_itemList = new List('household_items', {
+      valueNames: [ 
+        'household_item__name', 
+        'household_item__tags', 
+        'household_item__description' 
+      ]
+    });
+    
+    //---
+    //---
+    
+    // Obtain references to all the buttons.
+    var $buttons = $('.household_item_filter .filter_button a');
+    
+    // Add click listener to all the buttons.
+    $buttons.on('click', function(event){
+      // Put the clicked button to active state.
+      $buttons.removeClass('active')
+      $(event.target).addClass('active')
+      
+      // Obtain this tag name as a filter term.
+      var filterTerm = $(event.target).text();
+      
+      // If the filter term is "all", show all.
+      if (filterTerm.toLowerCase() === 'all') {
+        household_itemList.filter(function(item){ return true })
+        return
+      }
+      
+      // For the other filter terms, filter the list.
+      household_itemList.filter(function(item) {
+        var tags = item.values().household_item__tags.toLowerCase();
+        if ( tags.includes(filterTerm.toLowerCase()) ) {
+          return true;
+        } else {
+          return false;
+        }
+      });
+    })
+  })

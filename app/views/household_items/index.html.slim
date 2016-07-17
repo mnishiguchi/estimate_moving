@@ -15,15 +15,11 @@
       = link_to "Add item", new_moving_household_item_path(@moving, @household_item), class: "btn btn-primary" 
   .col-sm-7
     #moving_volume_chart[style="width:100%; height:200px;"]  
+    = render "moving_stats", moving: @moving, household_items: @household_items
 
 hr
 
-.row
-  .col-sm-5
-    = render "shared/moving_stats", moving: @moving, household_items: @household_items
-  .col-sm-7
-    = render "shared/moving_filter_forms", moving: @moving, household_items: @household_items  
-= render "shared/moving_items", moving: @moving, household_items: @household_items
+= render "household_items", moving: @moving, household_items: @household_items
 
 css:
   .highcharts-title {

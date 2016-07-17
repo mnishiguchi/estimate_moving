@@ -26,9 +26,8 @@ hr
         
   .col-sm-8
     - items = @moving.household_items
-    = render "shared/moving_stats", moving: @moving, household_items: items
-    = render "shared/moving_filter_forms", moving: @moving, household_items: items
-    = render "shared/moving_items", moving: @moving, household_items: items
+    = render "moving_stats", moving: @moving, household_items: items
+    = render "household_items", moving: @moving, household_items: items
 
 css:
   #toggle_calculator {

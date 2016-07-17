@@ -16,4 +16,5 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require highcharts
+//= require list
 //= require_tree .
