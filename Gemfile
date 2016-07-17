@@ -4,6 +4,7 @@ gem 'rails', '>= 5.0.0.rc2', '< 5.1'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.0'
 
+gem 'awesome_print'
 gem 'bootstrap-sass'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'devise', '~> 4.2.0'
@@ -12,7 +13,7 @@ gem 'font-awesome-rails'
 gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
-# gem 'kaminari', git: "git://github.com/amatsuda/kaminari.git", branch: 'master'
+# gem 'kaminari', git: 'git://github.com/amatsuda/kaminari.git', branch: 'master'
 gem 'omniauth', '~> 1.3', '>= 1.3.1'
 gem 'omniauth-facebook', '~> 3.0'
 gem 'omniauth-twitter', '~> 1.2', '>= 1.2.1'
@@ -35,15 +36,18 @@ gem 'uglifier', '>= 1.3.0'
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
-  gem 'awesome_print'
-  gem 'binding_of_caller'
-  gem 'byebug', platform: :mri # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'capybara'
-  gem 'dotenv-rails' # Autoloads dotenv in Rails.
+  # Autoloads dotenv in Rails.
+  gem 'dotenv-rails'
   gem 'factory_girl_rails'
   gem 'guard-rspec'
-  gem 'rails-controller-testing'
-  gem 'rspec-rails'
+  gem 'pry'
+  gem 'pry-doc'
+  gem 'pry-rails'
+  gem 'pry-stack_explorer'
+  gem 'pry-rescue'
+  gem 'pry-byebug'
+  # Color console output
+  gem 'rainbow'
 end
 
 group :development do
@@ -58,10 +62,19 @@ group :development do
 end
 
 group :test do
+  gem 'coveralls', require: false
+  gem 'capybara'
+  gem 'capybara-screenshot'
+  gem 'capybara-webkit'
+  gem 'chromedriver-helper', require: ['selenium_chrome'].include?(ENV['DRIVER'])
   gem 'database_cleaner'
-  gem 'json_spec', '~> 1.1', '>= 1.1.4'
-  gem "poltergeist"
+  gem 'generator_spec'
+  gem 'json_spec'
   gem 'launchy'
+  gem 'poltergeist'
+  gem 'rails-controller-testing'
+  gem 'rspec-rails'
+  gem 'rspec-retry'
   gem 'selenium-webdriver'
   gem 'shoulda-matchers'
 end

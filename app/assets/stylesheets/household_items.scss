@@ -1,3 +1,20 @@
 // Place all the styles related to the household_items controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// Emphasize the active button
+.household_item_filter a {
+  margin-top: .5rem;
+  border-bottom: none;
+  border-color: $gray_2 !important;
+  border-bottom: none;
+  color: $gray_4;
+  &:hover {
+    border-color: $gray_2 !important;
+  }
+  &.active,
+  &.active:hover {
+    color: white;
+    background-color: $gray_3;
+  }
+}

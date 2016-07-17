@@ -95,7 +95,7 @@ RSpec.feature "HouseholdItems", type: :feature do
     subject { page }
 
     it "has correct tags that are capitalized" do
-      within(".moving_filter_forms") do
+      within(".household_item_filter") do
         is_expected.to have_content("All")
         is_expected.to have_content("Ruby")
         is_expected.to have_content("Rails")
