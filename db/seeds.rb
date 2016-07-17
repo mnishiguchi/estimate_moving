@@ -56,7 +56,6 @@ User.order(:created_at).take(1).each do |user|
       quantity:    quantity,
       description: FFaker::Lorem.sentence
     )
-    break if (0..9).to_a.sample == 0
   end
 
   # Create tags on household_items

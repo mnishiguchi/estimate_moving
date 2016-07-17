@@ -1,15 +1,20 @@
-= provide(:title, "All movings")
+= provide(:title, "My moving projects")
 
-h1 
-  | All movings ( 
-  a#add_moving_toggle[href="#{new_moving_path}"]
+h1.page-header
+  | I have #{pluralize(current_user.movings.count, "moving project")}
+  a.btn.btn-default.add_moving[href="#{new_moving_path}" title="add moving"] 
     = fa_icon("plus")
-  |  )
-
-.all_movings
+  
+.row.movings
   - if @movings.count > 0
     = render @movings
   - else
     .alert.alert-warning
       | Currently, you have no moving project.
       |  #{link_to "Create a moving project.", new_moving_path}
+
+css:
+  .add_moving {
+    border-radius: 50%;
+    margin-left: 1rem;
+  }

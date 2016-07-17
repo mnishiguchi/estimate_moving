@@ -4,13 +4,26 @@
 /   div [ class = "alert alert-#{message_type}" ]
 /     = message
 
+css:
+  #flash_message {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2000; /*Navbar's value is 1000*/
+    opacity: 1;
+  }
+
 / Devise:    notice, alert
 / Bootstrap: success, info, warning, danger
 - flash.each do |type, message|
   - type = :success if notice
   - type = :danger  if alert
-  div[class="alert alert-#{type}"]
-    = message
-    button.close[aria-hidden="true" data-dismiss="alert" type="button"] 
-      | ×
-.clearfix
+  div[class="alert alert-#{type}" id="flash_message"]
+    .container.text-centered= message
+
+javascript:
+  setTimeout(function(){
+    $("#flash_message").fadeOut(1000);
+  }, 3000)
+  

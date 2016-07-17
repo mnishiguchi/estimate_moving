@@ -1,11 +1,9 @@
-li.moving[id="moving-#{moving.id}"]
-
-  strong.moving_title
-    = link_to h(moving.name), moving_household_items_path(moving)
-    
-  .moving_content
-    = h(moving.description) 
-     
-  .controls
-    = link_to fa_icon("pencil"), edit_moving_path(moving)
-    = link_to fa_icon("times"), moving, method: :delete, data: { confirm: 'Are you sure?' }
+.col-sm-4.moving[id="moving-#{moving.id}"]
+  .panel.panel-default 
+    .panel-heading 
+      h2.panel-title.moving__title
+        = link_to h(moving.name), moving_household_items_path(moving)
+    .panel-body 
+      = h(moving.description) 
+    .panel-footer
+      = link_to fa_icon("pencil", text: "Edit"), edit_moving_path(moving)

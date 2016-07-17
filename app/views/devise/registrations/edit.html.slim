@@ -1,14 +1,14 @@
-= provide(:title, "Edit account")
+= provide(:title, "Settings")
 
 .row
   .col-sm-offset-3.col-sm-6
 
-    h2
-      | Edit 
-      = resource_name.to_s.humanize
+    h2 Settings
       
     .well
-      = render 'shared/social_connect'
+      = gravatar_for(current_user, size: 48)
+      p = link_to "Update picture", "http://gravatar.com/emails"
+      p = render 'shared/social_connect'
       
     = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
       = f.error_notification

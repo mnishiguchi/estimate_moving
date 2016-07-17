@@ -1,9 +1,14 @@
-= provide(:title, "Add email")
+= provide(:title, "Email confirmation")
 
 .row
   .col-sm-offset-3.col-sm-6
-    h1 Add Email
-    = simple_form_for(@user, url: finish_signup_path(@user)) do |f|
-      = f.input :email, autofocus: true, class: 'form-control', placeholder: "Email"
-      .form-group
-        = f.submit 'Add email', class: 'btn btn-primary'
+    .well
+      .h4 Please enter your email address.
+      = simple_form_for(@user, url: finish_signup_path(@user)) do |f|
+        = f.input :email, autofocus: true, class: 'form-control'
+        .form-group
+          = f.submit 'Add email', class: 'btn btn-primary'
+
+javascript:
+  // Clear the temp email.
+  $('#user_email').val("");

@@ -16,13 +16,7 @@ html
     = render 'layouts/site_header'
     
     .container
-      - if current_user
-        .row
-          .col-sm-6 = render 'layouts/user_info' 
-          .col-sm-6 = render 'layouts/flash_message'
-      - else
-        = render 'layouts/flash_message'
-      
+      = render 'layouts/flash_message'
       main
         = yield
         
