@@ -50,7 +50,7 @@ RSpec.feature "Household items page", type: :feature do
 
     it "shows data in correct format" do
       within(".moving_stats") do
-        is_expected.to have_content("All items")
+        is_expected.to have_content(/Total/)
         is_expected.to have_content(moving.volume_unit_string)
         is_expected.to have_content(/\d+.*(ft3|m3)/)
         is_expected.to have_content(/\d+.*pcs/)

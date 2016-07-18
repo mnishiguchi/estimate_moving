@@ -1,28 +1,100 @@
 -# Requires:
 -# * moving
 -# * household_items
+-# Optional:
+-# * data
 
+- volume   = moving.correct_volume(household_items.sum(:volume))
+- quantity = household_items.sum(:quantity)
+- data ||= {}
+- unit = @moving.volume_unit_string
+
+- if data.presence
+  #moving_volume_chart[style="width:100%; height:200px;"]
+   
 .moving_stats
   .panel.panel-default
     .panel-heading
       .row
-        .col-xs-4
-          #moving_stats_heading.h4 All items
-        .col-xs-4
-          #moving_stats_volume
-            span.value 
-              - volume_sum = household_items.sum(:volume)
-              = moving.correct_volume(volume_sum)
-            span.unit
-              |  #{@moving.volume_unit_string}
-        .col-xs-4
-          #moving_stats_quantity
-            span.value #{household_items.sum(:quantity)}
-            span.unit 
-              |  pcs
+        .col-xs-4 Total:
+        .col-xs-5
+          span.value = volume
+          span.unit
+            |  #{unit}
+        .col-xs-3
+          span.value = quantity
+          span.unit 
+            |  pcs
 
 css:
-  #moving_stats_volume .value, 
-  #moving_stats_quantity .value {
+  .moving_stats .value {
     font-size: 3rem;
   }
+  .highcharts-title {
+    display: none;
+  }
+
+javascript:
+
+  // Configure the pie chart.
+  // http://www.highcharts.com/demo
+  // 
+  // Data structure:
+  // - categories: ['Africa', 'America', 'Asia', 'Europe', 'Oceania']
+  // - data: [107, 31, 635, 203, 2]
+  $(function () {
+    // Embed the json data at server side.
+    var data = #{raw data}
+    var unit = "#{unit}"
+
+    if (data) {
+      buildChart()
+    }
+      
+    function buildChart() {
+      $('#moving_volume_chart').highcharts(
+        {
+          chart: {
+              type: 'bar'
+          },
+          title: {
+              text: 'Volume of each tag'
+          },
+          xAxis: {
+              categories: data["names"],
+              title: {
+                  text: null
+              }
+          },
+          yAxis: {
+              min: 0,
+              title: {
+                  text: unit,
+                  align: 'high'
+              },
+              labels: {
+                  overflow: 'justify'
+              }
+          },
+          tooltip: false,
+          plotOptions: {
+              bar: {
+                  dataLabels: {
+                      enabled: true
+                  }
+              }
+          },
+          legend: {
+              x: 9999, // Make the legend invisible.
+              y: 9999
+          },
+          credits: {
+              enabled: false
+          },
+          series: [{
+              name: 'volume',
+              data: data["values"]
+          }]
+      });
+    }
+  });

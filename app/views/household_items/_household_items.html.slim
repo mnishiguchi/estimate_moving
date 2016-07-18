@@ -16,7 +16,7 @@ ul.household_item_filter.nav.nav-tabs[role="tablist"]
         = tag.name.capitalize
 br
 
-#household_items
+#household_item_table
 
   input.search.form-control[placeholder="Filter this table with a keyword..."]
   / button.sort[data-sort="household_item__name"] Sort by name
@@ -36,14 +36,7 @@ br
           th
       tbody.list
         - household_items.select(&:valid?).each do |item|
-          tr
-            td.household_item__name = item.name.capitalize
-            td.household_item__volume = item.volume_in_correct_unit
-            td.household_item__quantity = item.quantity
-            td.household_item__tags = item.all_tags
-            td.household_item__description = item.description
-            td = link_to fa_icon("pencil"), edit_moving_household_item_path(moving, item)
-            td = link_to fa_icon("times"), moving_household_item_path(moving, item), method: :delete, data: { confirm: 'Are you sure?' }
+          = render 'household_items/table_row', household_item: item
 
 javascript:
 
@@ -51,7 +44,7 @@ javascript:
   $(document).ready(function(){
   
     // Set up filterable table powered by List.js.
-    var household_itemList = new List('household_items', {
+    var household_itemList = new List('household_item_table', {
       valueNames: [ 
         'household_item__name', 
         'household_item__tags', 

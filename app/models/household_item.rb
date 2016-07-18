@@ -25,7 +25,6 @@ class HouseholdItem < ApplicationRecord
 
   before_save :downcase_name  # Standardizes on all lower-case words.
   before_save :calculate_volume_using_correct_unit
-  before_update :calculate_volume_using_correct_unit
 
   default_scope -> { order(:updated_at).reverse_order }
 

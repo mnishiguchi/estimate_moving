@@ -4,29 +4,32 @@ h1.h2
   small Add item to 
   = link_to @moving.name.capitalize, moving_path(@moving)
 hr
+
 .row
   .col-sm-4
-    / This is a nested route.
-    = simple_form_for([@moving, @household_item], html: { class: 'form-horizontal' }) do |f|
-      = f.input :name
-      .row
-        .col-xs-6
-          = f.input :volume, input_html: { min: '0', step: 'any', value: '0' }
-        .col-xs-6
-          = f.input :quantity, input_html: { min: '1', step: '1', value: '1' }
-      
-      a#toggle_calculator.text-muted[href="#"] 
-        ' Toggle volume calculator #{fa_icon "caret-down"}
-      = render "volume_calculator"
-      
-      = f.input :all_tags, placeholder: "Input tags separated by tags..."
-      = f.input :description 
-      .form-group
-        = f.submit "Create item", class: 'btn btn-primary'
+    .well
+      / This is a nested route.
+      = simple_form_for([@moving, @household_item], remote: true, html: { class: 'form-horizontal' }) do |f|
+        = f.input :name
+        .row
+          .col-xs-6
+            = f.input :volume, input_html: { min: '0', step: 'any' }
+          .col-xs-6
+            = f.input :quantity, input_html: { min: '1', step: '1', value: '1' }
         
+        a#toggle_calculator.text-muted[href="#"] 
+          ' Toggle volume calculator #{fa_icon "caret-down"}
+        = render "volume_calculator"
+        
+        = f.input :all_tags, placeholder: "Input tags separated by tags..."
+        = f.input :description 
+        .form-group
+          = f.submit "Create item", class: 'btn btn-primary'
+          
   .col-sm-8
     - items = @moving.household_items
-    = render "moving_stats", moving: @moving, household_items: items
+    #moving_stats
+      = render "moving_stats", moving: @moving, household_items: items
     = render "household_items", moving: @moving, household_items: items
 
 css:

@@ -35,7 +35,7 @@ example_user = User.create!(
 example_user.movings.create!(
   name:        FFaker::Address.city,
   description: FFaker::Lorem.sentence,
-  unit: 1
+  unit: 0
 )
 
 # Obtain data.

@@ -1,17 +1,17 @@
 = provide(:title, "My moving projects")
 
-h1.page-header
+h1.h2.page-header
   | I have #{pluralize(current_user.movings.count, "moving project")}
   a.btn.btn-default.add_moving[href="#{new_moving_path}" title="add moving"] 
     = fa_icon("plus")
   
-.row.movings
-  - if @movings.count > 0
+- if @movings.count > 0
+  .row.movings
     = render @movings
-  - else
-    .alert.alert-warning
-      | Currently, you have no moving project.
-      |  #{link_to "Create a moving project.", new_moving_path}
+- else
+  .alert.alert-warning
+    | Currently, you have no moving project.
+    |  #{link_to "Create a moving project.", new_moving_path}
 
 css:
   .add_moving {

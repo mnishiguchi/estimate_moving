@@ -13,75 +13,11 @@
     
     .form-group
       = link_to "Add item", new_moving_household_item_path(@moving, @household_item), class: "btn btn-primary" 
+  
   .col-sm-7
-    #moving_volume_chart[style="width:100%; height:200px;"]  
-    = render "moving_stats", moving: @moving, household_items: @household_items
+    #moving_stats
+      = render "moving_stats", moving: @moving, household_items: @household_items, data: @data
 
 hr
 
 = render "household_items", moving: @moving, household_items: @household_items
-
-css:
-  .highcharts-title {
-    display: none;
-  }
-
-javascript:
-
-  // Configure the pie chart.
-  // http://www.highcharts.com/demo
-  // 
-  // Data structure:
-  // - categories: ['Africa', 'America', 'Asia', 'Europe', 'Oceania']
-  // - data: [107, 31, 635, 203, 2]
-  $(function () {
-    // Embed the json data at server side.
-    var data = #{raw @data}
-    var unit = "#{@moving.volume_unit_string}"
-
-    // Build the chart.
-    $('#moving_volume_chart').highcharts(
-      {
-        chart: {
-            type: 'bar'
-        },
-        title: {
-            text: 'Volume of each tag'
-        },
-        xAxis: {
-            categories: data["names"],
-            title: {
-                text: null
-            }
-        },
-        yAxis: {
-            min: 0,
-            title: {
-                text: unit,
-                align: 'high'
-            },
-            labels: {
-                overflow: 'justify'
-            }
-        },
-        tooltip: false,
-        plotOptions: {
-            bar: {
-                dataLabels: {
-                    enabled: true
-                }
-            }
-        },
-        legend: {
-            x: 9999, // Make the legend invisible.
-            y: 9999
-        },
-        credits: {
-            enabled: false
-        },
-        series: [{
-            name: 'volume',
-            data: data["values"]
-        }]
-    });
-  });

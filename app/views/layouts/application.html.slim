@@ -16,7 +16,8 @@ html
     = render 'layouts/site_header'
     
     .container
-      = render 'layouts/flash_message'
+      #flash_message
+        = render 'layouts/flash_message'
       main
         = yield
         

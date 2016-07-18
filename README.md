@@ -10,11 +10,13 @@
 - Allows each user to have an account, where the user can hold multiple moving projects.
 - Lists all my household items for each moving project.
 - Displays the total volume of each moving project.
-- Allows user to add tags to household items and the items can be fitered by tag.
-
-## Pending features
+- Allows user to add tags to household items and the items can be filtered by tag.
+- sign up and log in via Twitter.
 - graphs/charts for moving volume data.
-- sign up and log in via Facebook or twitter.
+
+### Pending features
+- CSV download
+- Better and faster UI
 
 ## Demo
 

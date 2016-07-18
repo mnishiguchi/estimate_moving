@@ -1,0 +1,8 @@
+// Remove the deleted item from the table.
+$("#household_item-<%= @household_item.id %>").remove();
+
+// Update flash.
+$('#flash_message').html("<%= j render 'layouts/flash_message' %>")
+
+// Update the chart and total volume in moving stats.
+$('#moving_stats').html("<%= j render 'household_items/moving_stats', moving: @moving, household_items: @household_items, data: @data %>")

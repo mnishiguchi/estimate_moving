@@ -1,0 +1,13 @@
+-# Requires:
+-# * moving
+-# * household_item
+
+tr.household_item[id="household_item-#{household_item.id}"]
+  td.household_item__name = household_item.name.capitalize
+  td.household_item__volume = household_item.volume_in_correct_unit
+  td.household_item__quantity = household_item.quantity
+  td.household_item__tags = household_item.all_tags
+  td.household_item__description = household_item.description
+  td = link_to fa_icon("pencil"), edit_moving_household_item_path(household_item.moving, household_item)
+  td = link_to fa_icon("times"), moving_household_item_path(household_item.moving, household_item), 
+         method: :delete, remote: true, data: { confirm: 'Are you sure?' }
