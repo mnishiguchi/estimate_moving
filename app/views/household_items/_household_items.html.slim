@@ -57,13 +57,13 @@ javascript:
         'household_item__tags', 
         'household_item__description' 
       ]
-    });
+    })
     
     //---
     //---
     
     // Obtain references to all the buttons.
-    var $buttons = $('.household_item_filter .filter_button a');
+    var $buttons = $('.household_item_filter .filter_button a')
     
     // Add click listener to all the buttons.
     $buttons.on('click', function(event){
@@ -72,7 +72,7 @@ javascript:
       $(event.target).addClass('active')
       
       // Obtain this tag name as a filter term.
-      var filterTerm = $(event.target).text();
+      var filterTerm = $(event.target).text()
       
       // If the filter term is "all", show all.
       if (filterTerm.toLowerCase() === 'all') {
@@ -82,12 +82,12 @@ javascript:
       
       // For the other filter terms, filter the list.
       household_itemList.filter(function(item) {
-        var tags = item.values().household_item__tags.toLowerCase();
+        var tags = item.values().household_item__tags.toLowerCase()
         if ( tags.includes(filterTerm.toLowerCase()) ) {
-          return true;
+          return true
         } else {
-          return false;
+          return false
         }
-      });
+      })
     })
   })
