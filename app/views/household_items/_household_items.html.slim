@@ -43,16 +43,17 @@ br
 javascript:
 
   // Initialize List.js.
-  $(document).on('turbolinks:load', function(){
+  $(document).on('turbolinks:load', function() {
   
     // Set up filterable table powered by List.js.
-    var household_itemList = new List('household_item_table', {
+    householdItemList = new List('household_item_table', {
       valueNames: [ 
         'household_item__name', 
         'household_item__tags', 
         'household_item__description' 
       ]
     })
+    app.householdItemList = householdItemList
     
     //---
     //---
@@ -71,12 +72,12 @@ javascript:
       
       // If the filter term is "all", show all.
       if (filterTerm.toLowerCase() === 'all') {
-        household_itemList.filter(function(item){ return true })
+        householdItemList.filter(function(item){ return true })
         return
       }
       
       // For the other filter terms, filter the list.
-      household_itemList.filter(function(item) {
+      householdItemList.filter(function(item) {
         var tags = item.values().household_item__tags.toLowerCase()
         if ( tags.includes(filterTerm.toLowerCase()) ) {
           return true

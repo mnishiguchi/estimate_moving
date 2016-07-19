@@ -3,23 +3,54 @@
 -# * household_item
 
 / This is a nested route.
-= simple_form_for([moving, household_item], html: { class: 'form-horizontal' }) do |f|
-  = f.input :name
+= simple_form_for([moving, household_item]) do |f|
+  table[style="width: 100%;"]
+    tbody
+      tr
+        td = f.input :name, error: false, class: "form-control", placeholder: "Name" 
+        td = f.input :volume, input_html: { min: '0', step: 'any' }, error: false, class: "form-control"
+        td = f.input :quantity, input_html: { min: '1', step: '1', value: '1' }, error: false, class: "form-control"
+      tr
+        td[colspan=3] 
+          = f.input :all_tags, placeholder: "Tags separated by tags", label: false, class: "form-control"
+      tr
+        td[colspan=3] 
+          = f.input :description, placeholder: "Description", label: false, class: "form-control"
   .row
     .col-xs-6
-      = f.input :volume, input_html: { min: '0', step: 'any' }
+      = f.submit submit_text, class: 'btn btn-primary'
     .col-xs-6
-      = f.input :quantity, input_html: { min: '1', step: '1', value: '1' }
-  
-  a#toggle_calculator.text-muted[href="#"] 
-    ' Toggle volume calculator #{fa_icon "caret-down"}
-  = render "household_items/volume_calculator"
-  
-  = f.input :all_tags, placeholder: "Input tags separated by tags..."
-  = f.input :description 
-  .form-group
-    = f.submit submit_text, class: 'btn btn-primary'
+      button.pull-right[data-target="#volumeCalculatorModal" data-toggle="modal" type="button" ] Open volume calculator
 
+
+  .modal.fade[id="volumeCalculatorModal" tabindex="-1" role="dialog"]
+    .modal-dialog
+      .modal-content
+        .modal-header
+          button.close[type="button" data-dismiss="modal" aria-label="Close"]
+            span[aria-hidden="true"]
+              | ×
+          h4.modal-title
+            | Volume calculator
+        .modal-body
+          p Please ente three values in #{moving.length_unit_string}.
+          .form-group
+            .row
+              .col-xs-4
+                label[for="length"] Length
+                input.form-control[type="number" name="length"] 
+              .col-xs-4
+                label[for="width"] Width
+                input.form-control[type="number" name="width"] 
+              .col-xs-4
+                label[for="height"] Height
+                input.form-control[type="number" name="height"]
+        .modal-footer
+          button.btn.btn-default[type="button" data-dismiss="modal"]
+            | Close
+          button.btn.btn-primary#calculate[type="button"]
+            | Calculate
+  
 css:
   #toggle_calculator {
     display: block;
@@ -31,9 +62,11 @@ javascript:
   // Also this script is only used for this particular HTML component.
   $(document).ready(function(){
   
-    // Invoke the tesks.
+    // Set up autocomplete.
     autocompleteNameAndVolume()
     autocompleteTags()
+    
+    // Set up volume calculator.
     setUpVolumeCalculator()
     
     //---
@@ -67,6 +100,9 @@ javascript:
         source: tagNames
       });
     }
+
+    //---
+    //---
     
     function setUpVolumeCalculator(){
       $('#toggle_calculator').on('click', function(event){

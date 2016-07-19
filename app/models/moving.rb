@@ -40,6 +40,13 @@ class Moving < ApplicationRecord
     end
   end
 
+  def length_unit_string
+    case self.unit
+    when "us"     then "feet"
+    when "metric" then "meters"
+    end
+  end
+
   def correct_volume(value)
     case self.unit
     when "metric" then ft3_to_m3(value)

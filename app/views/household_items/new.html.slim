@@ -4,15 +4,16 @@ h1.h3
   small Add item to 
   = link_to @moving.name.capitalize, moving_path(@moving)
 
-.turbolinks-progress-bar
+.progress
+  .turbolinks-progress-bar.progress-bar[role="progressbar"]
 
-.row
-  .col-sm-4
-    .well
-      = render "household_items/form", moving: @moving, household_item: @household_item, submit_text: "Create item"
+.well
+  #household_item_form
+    = render "household_items/form", moving: @moving, 
+                                     household_item: @household_item, 
+                                     submit_text: "Create item"
 
-  .col-sm-8
-    #moving_stats[data-turbolinks-permanent]
-      = render "moving_stats", moving: @moving
-    #household_items[data-turbolinks-permanent]
-      = render "household_items", moving: @moving
+#moving_stats[data-turbolinks-permanent]
+  = render "household_items/moving_stats", moving: @moving
+#household_items[data-turbolinks-permanent]
+  = render "household_items/household_items", moving: @moving
