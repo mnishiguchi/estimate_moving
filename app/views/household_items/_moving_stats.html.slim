@@ -1,8 +1,10 @@
 -# Requires:
 -# * moving
--# * household_items
 -# Optional:
 -# * data
+
+-# NOTE: Items must be retrieved via @moving.
+- household_items = moving.household_items
 
 - volume   = moving.correct_volume(household_items.sum(:volume))
 - quantity = household_items.sum(:quantity)
@@ -47,7 +49,8 @@ javascript:
     var data = #{raw data}
     var unit = "#{unit}"
 
-    if (data) {
+    // We need two sets of arrays to build a chart.
+    if (Object.keys(data).length == 2) {
       buildChart()
     }
       

@@ -2,13 +2,14 @@ class HouseholdItemsController < ApplicationController
   before_action :authenticate_user!      # All actions
   before_action :set_current_user_moving # All actions
   before_action :set_household_item, only: [:edit, :update, :destroy]
-  before_action :set_data_for_stats, only: [:index, :create, :destroy]
 
   # To use the `item_volume_json` and `json_for_pie_chart` helpers.
   include HouseholdItemsHelper
 
   # Show all the items of a moving project that belongs to current user.
   def index
+    # Create data that is required for the bar chart.
+    @data = json_for_bar_chart(@moving)
   end
 
   def new
@@ -17,17 +18,27 @@ class HouseholdItemsController < ApplicationController
 
   def create
     respond_to do |format|
-      format.js do
-        @household_item = @moving.household_items.new(household_item_params
-                                                      .merge(moving: @moving))
+      format.html do
+        @household_item = @moving.household_items.new(household_item_params.merge(moving: @moving))
         if @household_item.save
-          # For ajax, use `flash.now`.
-          flash.now[:success] = "Item created"
-          @household_item
+          flash[:success] = "Item created"
+          redirect_to new_moving_household_item_url @moving
         else
-          raise "cannot save item"
+          flash.now[:danger] = @household_item.errors.full_messages.to_sentence
+          render :new
         end
       end
+      # format.js do
+      #   @household_item = @moving.household_items.new(household_item_params.merge(moving: @moving))
+      #   if @household_item.save
+      #     # For ajax, use `flash.now`.
+      #     flash.now[:success] = "Item created"
+      #     # Create data that is required for the bar chart.
+      #     @data = json_for_bar_chart(@moving)
+      #   else
+      #     raise "cannot save item"
+      #   end
+      # end
     end
   end
 
@@ -48,6 +59,8 @@ class HouseholdItemsController < ApplicationController
       format.js do
         @household_item.destroy
         flash.now[:info] = "Item deleted"
+        # Create data that is required for the bar chart.
+        @data = json_for_bar_chart(@moving)
       end
     end
   end
@@ -69,12 +82,12 @@ class HouseholdItemsController < ApplicationController
       @household_item = @moving.household_items.find(params[:id])
     end
 
-    # Prepares data for moving stats partial.
-    def set_data_for_stats
-      # NOTE: Items must be retrieved via @moving.
-      @household_items ||= @moving.household_items
-
-      # Create data that is required for the bar chart.
-      @data = json_for_bar_chart(@moving)
-    end
+    # # Prepares data for moving stats partial.
+    # def set_data_for_stats
+    #   # NOTE: Items must be retrieved via @moving.
+    #   @household_items ||= @moving.household_items
+    #
+    #   # Create data that is required for the bar chart.
+    #   @data = json_for_bar_chart(@moving)
+    # end
 end

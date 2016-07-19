@@ -2,12 +2,13 @@
 
 .row
   .col-sm-5
-    h1 = @moving.name
-    p = @moving.description
-    p 
-      .badge
-        ' Using #{@moving.unit} system : #{@moving.volume_unit_string}
-    = link_to fa_icon("cog", text: "settings"), edit_moving_path(@moving)
+    #moving_info[data-turbolinks-permanent]
+      h1.h2 = @moving.name
+      p = @moving.description
+      p 
+        .badge
+          ' Using #{@moving.unit} system : #{@moving.volume_unit_string}
+      = link_to fa_icon("cog", text: "settings"), edit_moving_path(@moving)
 
     hr
     
@@ -15,9 +16,10 @@
       = link_to "Add item", new_moving_household_item_path(@moving, @household_item), class: "btn btn-primary" 
   
   .col-sm-7
-    #moving_stats
-      = render "moving_stats", moving: @moving, household_items: @household_items, data: @data
+    #moving_stats[data-turbolinks-permanent]
+      = render "moving_stats", moving: @moving, data: @data
 
 hr
 
-= render "household_items", moving: @moving, household_items: @household_items
+#household_items[data-turbolinks-permanent]
+  = render "household_items", moving: @moving

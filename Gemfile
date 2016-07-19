@@ -62,11 +62,10 @@ group :development do
 end
 
 group :test do
-  gem 'coveralls', require: false
   gem 'capybara'
   gem 'capybara-screenshot'
   gem 'capybara-webkit'
-  gem 'chromedriver-helper', require: ['selenium_chrome'].include?(ENV['DRIVER'])
+  gem 'chromedriver-helper'
   gem 'database_cleaner'
   gem 'generator_spec'
   gem 'json_spec'

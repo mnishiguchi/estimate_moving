@@ -4,12 +4,4 @@
   .col-sm-offset-3.col-sm-6
     h1 Edit item
     
-    / This is a nested route.
-    = simple_form_for([@moving, @household_item], html: { class: 'form-horizontal' }) do |f|
-      = f.input :name
-      = f.input :volume 
-      = f.input :quantity 
-      = f.input :all_tags
-      = f.input :description 
-      .form-group
-        = f.submit "Update item", class: 'btn btn-primary'
+    = render "household_items/form", moving: @moving, household_item: @household_item, submit_text: "Update item"

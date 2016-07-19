@@ -1,6 +1,8 @@
 -# Requires:
 -# * moving
--# * household_items
+
+-# NOTE: Items must be retrieved via @moving.
+- household_items = moving.household_items
 
 ul.household_item_filter.nav.nav-tabs[role="tablist"]
 
@@ -41,7 +43,7 @@ br
 javascript:
 
   // Initialize List.js.
-  $(document).ready(function(){
+  $(document).on('turbolinks:load', function(){
   
     // Set up filterable table powered by List.js.
     var household_itemList = new List('household_item_table', {
