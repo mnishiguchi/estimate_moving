@@ -6,6 +6,15 @@ main {
   min-height: 80vh;
 }
 
+.flash_message.alert {
+  margin-bottom: 0;
+}
+
+.turbolinks-progress-bar {
+  height: 5px;
+  background-color: $blue;
+}
+
 #logo {
   float: left;
   margin-right: 10px;
@@ -20,12 +29,16 @@ main {
     color: white;
     text-decoration: none;
   }
-  span {
-    display: none;
-    transition: all 0.4s ease;
-    @media only screen and (min-width : 480px) {
-      display: inline-block;
-    }
+  .flex & {
+    margin-right: auto;
+  }
+}
+
+span.shrink {
+  display: none;
+  transition: all 0.4s ease;
+  @media only screen and (min-width : 480px) {
+    display: inline-block;
   }
 }
 
@@ -42,6 +55,7 @@ main {
 .navbar-inverse {
   background-color: $header-color;
   font-family: $heading-font-family;
+  margin-bottom: 0;
 }
 
 // Center the nav items.
@@ -54,10 +68,14 @@ main {
   text-align: center;
 }
 
+.flex {
+  display: flex;
+}
+
 .gravatar_dropdown {
-  position: absolute;
-  top: 0;
-  right: 0;
+  // position: absolute;
+  // top: 0;
+  // right: 0;
   a {
     color: $gray_1;
     text-decoration: none;

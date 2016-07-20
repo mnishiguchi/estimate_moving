@@ -16,14 +16,14 @@
       tr
         td[colspan=3] 
           = f.input :description, placeholder: "Description", label: false, class: "form-control"
-  .row
-    .col-xs-6
-      = f.submit submit_text, class: 'btn btn-primary'
-    .col-xs-6
-      button.pull-right[data-target="#volumeCalculatorModal" data-toggle="modal" type="button" ] Open volume calculator
+    
+  .form-group
+    button[data-target="#volumeCalculatorModal" data-toggle="modal" type="button" ] Open volume calculator
+    = f.submit submit_text, class: 'btn btn-primary pull-right'
+    .clearfix
 
 
-  .modal.fade[id="volumeCalculatorModal" tabindex="-1" role="dialog"]
+  .modal.fade#volumeCalculatorModal[tabindex="-1" role="dialog"]
     .modal-dialog
       .modal-content
         .modal-header
@@ -33,7 +33,7 @@
           h4.modal-title
             | Volume calculator
         .modal-body
-          p Please ente three values in #{moving.length_unit_string}.
+          p Please enter three values in #{moving.length_unit_string}.
           .form-group
             .row
               .col-xs-4
@@ -45,7 +45,11 @@
               .col-xs-4
                 label[for="height"] Height
                 input.form-control[type="number" name="height"]
+
         .modal-footer
+          .help-block
+            .result
+              | Calculation result will be inserted into the volume field automatically.
           button.btn.btn-default[type="button" data-dismiss="modal"]
             | Close
           button.btn.btn-primary#calculate[type="button"]
@@ -60,7 +64,7 @@ css:
 javascript:
   // I use inline javascript because I want to enbed data into javascript at server side.
   // Also this script is only used for this particular HTML component.
-  $(document).ready(function(){
+  $(document).on('turbolinks:load', function(){
   
     // Set up autocomplete.
     autocompleteNameAndVolume()
@@ -131,6 +135,22 @@ javascript:
           result = $values[0] * $values[1] * $values[2] 
         }
         
+        // Set the result text on the modal.
+        var resultString = [
+          "Result inserted into the volume field: ",
+          $values[0],
+          " x ",
+          $values[1],
+          " x ",
+          $values[2],
+          " = ",
+          result,
+          " (",
+          "#{moving.volume_unit_string}",
+          ")"
+        ].join("")
+        $('#volumeCalculatorModal .result').text(resultString)
+      
         // Set the result to the volume field.
         setVolume(result)
       

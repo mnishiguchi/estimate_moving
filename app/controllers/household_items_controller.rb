@@ -17,28 +17,14 @@ class HouseholdItemsController < ApplicationController
   end
 
   def create
-    respond_to do |format|
-      format.html do
-        @household_item = @moving.household_items.new(household_item_params.merge(moving: @moving))
-        if @household_item.save
-          flash[:success] = "Item created"
-          redirect_to new_moving_household_item_url @moving
-        else
-          flash.now[:danger] = @household_item.errors.full_messages.to_sentence
-          render :new
-        end
-      end
-      # format.js do
-      #   @household_item = @moving.household_items.new(household_item_params.merge(moving: @moving))
-      #   if @household_item.save
-      #     # For ajax, use `flash.now`.
-      #     flash.now[:success] = "Item created"
-      #     # Create data that is required for the bar chart.
-      #     @data = json_for_bar_chart(@moving)
-      #   else
-      #     raise "cannot save item"
-      #   end
-      # end
+    @household_item = @moving.household_items.new(household_item_params.merge(moving: @moving))
+    if @household_item.save
+      flash[:success] = "Item created"
+      redirect_to new_moving_household_item_url @moving
+    else
+      # flash.now[:danger] = @household_item.errors.full_messages.to_sentence
+      flash.now[:danger] = "Your changes were not saved. Check out the problems below."
+      render :new
     end
   end
 
@@ -47,7 +33,7 @@ class HouseholdItemsController < ApplicationController
 
   def update
     if @household_item.update(household_item_params)
-      flash[:info] = "Item updated"
+      flash[:success] = "Item updated"
       redirect_to @moving
     else
       render :edit
@@ -58,7 +44,7 @@ class HouseholdItemsController < ApplicationController
     respond_to do |format|
       format.js do
         @household_item.destroy
-        flash.now[:info] = "Item deleted"
+        flash.now[:success] = "Item deleted"
         # Create data that is required for the bar chart.
         @data = json_for_bar_chart(@moving)
       end

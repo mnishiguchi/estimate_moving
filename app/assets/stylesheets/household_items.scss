@@ -18,3 +18,13 @@
     background-color: $gray_3;
   }
 }
+
+.current_unit {
+  margin-right: 1rem;
+}
+
+.moving_info__description {
+  display: block;
+  max-height: 80px;
+  overflow: auto;
+}

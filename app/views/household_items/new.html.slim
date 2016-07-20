@@ -1,11 +1,21 @@
 = provide(:title, "New household item")
 
-h1.h3
-  small Add item to 
-  = link_to @moving.name.capitalize, moving_path(@moving)
-
-.progress
-  .turbolinks-progress-bar.progress-bar[role="progressbar"]
+#moving_info
+  h1.h2 
+    = @moving.name.capitalize
+  pmoving_info__description
+    = @moving.description
+  p 
+    .badge.current_unit
+      ' Using #{@moving.unit} system : #{@moving.volume_unit_string}
+    = link_to fa_icon("cog", text: "settings"), edit_moving_path(@moving), 
+                                                title: "Edit moving project"
+  
+    .pull-right
+      = link_to fa_icon("list"), moving_household_items_path(@moving), 
+                                 class: "btn btn-primary",
+                                 title: "Show all household items"
+    .clearfix
 
 .well
   #household_item_form
@@ -15,5 +25,3 @@ h1.h3
 
 #moving_stats[data-turbolinks-permanent]
   = render "household_items/moving_stats", moving: @moving
-#household_items[data-turbolinks-permanent]
-  = render "household_items/household_items", moving: @moving

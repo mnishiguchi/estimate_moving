@@ -41,3 +41,9 @@ $ rails s
 ## Models
 
 ![](erd.jpg)
+
+## Turbolinks 5
+
+[Turbolinks 5: I Can’t Believe It’s Not Native! (Video)](http://confreaks.tv/videos/railsconf2016-turbolinks-5-i-can-t-believe-it-s-not-native)
+
+> Learn how Turbolinks 5 enables small teams to deliver lightning-fast Rails applications in the browser, plus high-fidelity hybrid apps for iOS and Android, all using a shared set of web views.

@@ -6,20 +6,8 @@
   - type = :success if notice
   - type = :danger  if alert
   div[class="alert alert-#{type} flash_message"]
-    .container.text-centered= message
-
-css:
-  .flash_message {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 2000; /*Navbar's value is 1000*/
-    opacity: 1;
-  }
-
-javascript:
-  setTimeout(function(){
-    $("#flash_message").fadeOut(1000);
-  }, 3000)
-  
+    .container.text-centered
+      .close[aria-hidden="true" data-dismiss="alert" type="button"]
+        = fa_icon("times")
+      .message = message
+    .clearfixs

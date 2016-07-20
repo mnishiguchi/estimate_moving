@@ -17,7 +17,7 @@ RSpec.feature "Household items page", type: :feature do
       is_expected.to have_content(moving.description)
       is_expected.to have_content(moving.volume_unit_string)
       is_expected.to have_link("settings", href: edit_moving_path(moving))
-      is_expected.to have_link("Add item", href: new_moving_household_item_path(moving))
+      is_expected.to have_link("Add new household item", href: new_moving_household_item_path(moving))
     end
 
     context "clicking the 'Settings' link" do
@@ -27,7 +27,7 @@ RSpec.feature "Household items page", type: :feature do
     end
 
     context "clicking the 'Add item' link" do
-      before(:each) { click_link("Add item") }
+      before(:each) { click_link("Add new household item") }
 
       it { is_expected.to have_title("New household item") }
     end

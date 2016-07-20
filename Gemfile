@@ -68,6 +68,7 @@ group :test do
   gem 'chromedriver-helper'
   gem 'database_cleaner'
   gem 'generator_spec'
+  gem 'fuubar'
   gem 'json_spec'
   gem 'launchy'
   gem 'poltergeist'

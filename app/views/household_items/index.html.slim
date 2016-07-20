@@ -1,25 +1,26 @@
 = provide(:title, @moving.name)
 
-.row
-  .col-sm-5
-    #moving_info[data-turbolinks-permanent]
-      h1.h2 = @moving.name
-      p = @moving.description
-      p 
-        .badge
-          ' Using #{@moving.unit} system : #{@moving.volume_unit_string}
-      = link_to fa_icon("cog", text: "settings"), edit_moving_path(@moving)
+#moving_info[data-turbolinks-permanent]
+  h1.h2 
+    = @moving.name
+  p.moving_info__description 
+    = @moving.description
+  p 
+    .badge.current_unit
+      ' Using #{@moving.unit} system : #{@moving.volume_unit_string}
+    = link_to fa_icon("cog", text: "settings"), edit_moving_path(@moving)
 
-    hr
-    
-    .form-group
-      = link_to "Add item", new_moving_household_item_path(@moving, @household_item), class: "btn btn-primary" 
-  
-  .col-sm-7
-    #moving_stats[data-turbolinks-permanent]
-      = render "moving_stats", moving: @moving, data: @data
+    .pull-right
+      = link_to fa_icon("plus"), 
+         new_moving_household_item_path(@moving, @household_item), 
+         class: "btn btn-primary new_moving_household_item_link",
+         title: "Add new household item" 
+    .clearfix
+
+#moving_stats[data-turbolinks-permanent]
+  = render "moving_stats", moving: @moving, data: @data
 
 hr
 
-#household_items[data-turbolinks-permanent]
+#household_items
   = render "household_items", moving: @moving

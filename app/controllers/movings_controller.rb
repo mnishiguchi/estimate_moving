@@ -5,13 +5,14 @@ class MovingsController < ApplicationController
   # Logged-in user can access only his/her own movings.
 
   before_action :authenticate_user!
-  before_action :set_current_user_moving, only: [:show, :edit, :update, :destroy]
+  before_action :set_user_moving, only: [:show, :edit, :update, :destroy]
 
   def index
     @movings = current_user.movings.all
   end
 
   def show
+    # Use moving_household_items_path instead.
     redirect_to moving_household_items_url @moving
   end
 
@@ -34,7 +35,7 @@ class MovingsController < ApplicationController
 
   def update
     if @moving.update(moving_params)
-      flash[:info] = "Moving updated"
+      flash[:success] = "Moving updated"
       redirect_to @moving
     else
       render :edit
@@ -43,7 +44,7 @@ class MovingsController < ApplicationController
 
   def destroy
     @moving.destroy
-    flash[:info] = "Moving deleted"
+    flash[:success] = "Moving deleted"
     redirect_to root_url
   end
 
@@ -54,7 +55,7 @@ class MovingsController < ApplicationController
     end
 
     # Make sure that we access movings through current_user.
-    def set_current_user_moving
+    def set_user_moving
       @moving = current_user.movings.find(params[:id])
     end
 end
