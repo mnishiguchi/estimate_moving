@@ -4,34 +4,30 @@
 
 / This is a nested route.
 = simple_form_for([moving, household_item]) do |f|
-  table[style="width: 100%;"]
-    tbody
-      tr
-        td = f.input :name, error: false, class: "form-control", placeholder: "Name" 
-        td = f.input :volume, input_html: { min: '0', step: 'any' }, error: false, class: "form-control"
-        td = f.input :quantity, input_html: { min: '1', step: '1', value: '1' }, error: false, class: "form-control"
-      tr
-        td[colspan=3] 
-          = f.input :all_tags, placeholder: "Tags separated by tags", label: false, class: "form-control"
-      tr
-        td[colspan=3] 
-          = f.input :description, placeholder: "Description", label: false, class: "form-control"
+  .flex
+    div[style="flex:1;"]
+      = f.input :name, placeholder: "Name"
+    div[style="width:100px;"]
+      = f.input :volume, input_html: { min: '0', step: 'any' }
+    div[style="width:100px;"]
+      = f.input :quantity, input_html: { min: '1', step: '1', value: '1' }
+
+  = f.input :all_tags, placeholder: "Tags separated by tags", label: false
+  = f.input :description, placeholder: "Description", label: false
     
   .form-group
-    button[data-target="#volumeCalculatorModal" data-toggle="modal" type="button" ] Open volume calculator
+    button[data-target="#volumeCalculatorModal" data-toggle="modal" type="button" ] 
+      | Volume calculator
     = f.submit submit_text, class: 'btn btn-primary pull-right'
     .clearfix
-
 
   .modal.fade#volumeCalculatorModal[tabindex="-1" role="dialog"]
     .modal-dialog
       .modal-content
         .modal-header
           button.close[type="button" data-dismiss="modal" aria-label="Close"]
-            span[aria-hidden="true"]
-              | ×
-          h4.modal-title
-            | Volume calculator
+            span[aria-hidden="true"] ×
+          h4.modal-title Volume calculator
         .modal-body
           p Please enter three values in #{moving.length_unit_string}.
           .form-group
@@ -137,7 +133,7 @@ javascript:
         
         // Set the result text on the modal.
         var resultString = [
-          "Result inserted into the volume field: ",
+          "Result was inserted into the volume field: ",
           $values[0],
           " x ",
           $values[1],

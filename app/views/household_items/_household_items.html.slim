@@ -46,14 +46,13 @@ javascript:
   $(document).on('turbolinks:load', function() {
   
     // Set up filterable table powered by List.js.
-    householdItemList = new List('household_item_table', {
+    var householdItemList = new List('household_item_table', {
       valueNames: [ 
         'household_item__name', 
         'household_item__tags', 
         'household_item__description' 
       ]
     })
-    app.householdItemList = householdItemList
     
     //---
     //---

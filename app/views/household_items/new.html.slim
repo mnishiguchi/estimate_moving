@@ -2,7 +2,7 @@
 
 #moving_info
   h1.h2 
-    = @moving.name.capitalize
+    = @moving.name
   pmoving_info__description
     = @moving.description
   p 
@@ -24,4 +24,4 @@
                                      submit_text: "Create item"
 
 #moving_stats[data-turbolinks-permanent]
-  = render "household_items/moving_stats", moving: @moving
+  = render "household_items/moving_stats", moving: @moving, data: @data

@@ -8,12 +8,12 @@ class HouseholdItemsController < ApplicationController
 
   # Show all the items of a moving project that belongs to current user.
   def index
-    # Create data that is required for the bar chart.
     @data = json_for_bar_chart(@moving)
   end
 
   def new
     @household_item = @moving.household_items.new
+    @data = json_for_bar_chart(@moving)
   end
 
   def create

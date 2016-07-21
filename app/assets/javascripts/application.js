@@ -18,5 +18,3 @@
 //= require highcharts
 //= require list
 //= require_tree .
-
-var app = app || {}

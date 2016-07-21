@@ -24,8 +24,8 @@ $root-font-family: "PT Serif", 'Times New Roman', serif;
 $root-font-size: 18px;
 $root-line-height: 1.6;
 
-$header-color: #082031;
-$header-color-transparent: rgba(8, 32, 49, .9);
+$header-color: $gray_4;
+$footer-color: $gray_5;
 
 $body-color: $gray-5;
 $body-bg: #fcfbfb;

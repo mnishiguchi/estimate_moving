@@ -11,7 +11,7 @@ main {
 }
 
 .turbolinks-progress-bar {
-  height: 5px;
+  height: 3px;
   background-color: $blue;
 }
 
@@ -105,7 +105,7 @@ footer {
   margin-top: 4rem;
   padding: 4rem 0;
   color: $gray-2;
-  background: $header-color;
+  background: $footer-color;
   .contact-info {
     display: inline-block;
     padding: 0 5px;
