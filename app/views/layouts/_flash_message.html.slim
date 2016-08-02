@@ -1,6 +1,10 @@
 / This is to render a Bootstrap 3 alert according to the specified alert type.
-/ Devise:    notice, alert
-/ Bootstrap: success, info, warning, danger
+/ - Devise:    notice, alert
+/ - Bootstrap: success, info, warning, danger
+
+/ The flash_message_spacer
+/ - used to push down the navbar when flash_message is displayed.
+/ - necessary because the flash is fixed top and cannot push the navbar.
 
 - flash.each do |type, message|
   - type = :success if notice
@@ -10,4 +14,13 @@
       .close[aria-hidden="true" data-dismiss="alert" type="button"]
         = fa_icon("times")
       .message = message
-    .clearfixs
+    .clearfix
+
+- unless flash.empty?
+  #flash_message_spacer
+
+javascript:
+
+  $('.close').on('click', function() {
+    $('#flash_message_spacer').hide();
+  })

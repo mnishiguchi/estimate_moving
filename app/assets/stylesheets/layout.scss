@@ -7,7 +7,17 @@ main {
 }
 
 .flash_message.alert {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1001;
+  width: 100vw;
   margin-bottom: 0;
+}
+
+#flash_message_spacer {
+  display: block;
+  height: 54px;
 }
 
 .turbolinks-progress-bar {
