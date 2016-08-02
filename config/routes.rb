@@ -20,4 +20,8 @@ Rails.application.routes.draw do
   resources :social_profiles, only: :destroy
 
   root 'static_pages#home'
+
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
 end

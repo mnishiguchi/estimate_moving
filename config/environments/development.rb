@@ -27,9 +27,10 @@ Rails.application.configure do
   end
 
   # ==> Mailer
+  # Visit http://localhost:3000/letter_opener to view delivered emails.
 
   config.action_mailer.perform_deliveries    = true
-  config.action_mailer.delivery_method       = :test
+  config.action_mailer.delivery_method       = :letter_opener_web
   config.action_mailer.default_url_options   = { host: 'localhost', port: 3000 }
   config.action_mailer.perform_caching       = false
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
