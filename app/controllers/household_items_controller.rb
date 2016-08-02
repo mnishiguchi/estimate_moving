@@ -6,9 +6,20 @@ class HouseholdItemsController < ApplicationController
   # To use the `item_volume_json` and `json_for_pie_chart` helpers.
   include HouseholdItemsHelper
 
+  # To perform CSV export.
+  include CsvHelper
+
   # Show all the items of a moving project that belongs to current user.
   def index
-    @data = json_for_bar_chart(@moving)
+
+    respond_to do |format|
+      format.html do
+        @data = json_for_bar_chart(@moving)
+      end
+      format.csv do
+        MovingCsv.new(@moving, self).send_data
+      end
+    end
   end
 
   def new

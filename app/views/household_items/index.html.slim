@@ -1,5 +1,7 @@
 = provide(:title, @moving.name)
 
+= link_to "Download data in CSV", moving_household_items_path(@moving, format: "csv")
+
 #moving_info
   h1.h2 
     = @moving.name

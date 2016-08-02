@@ -23,7 +23,7 @@ class HouseholdItem < ApplicationRecord
   validates :quantity, presence: true, numericality: { only_integer: true, greater_than: 0 }
 
   before_save :downcase_name  # Standardizes on all lower-case words.
-  before_save :calculate_volume_using_correct_unit
+  before_save :ensure_volume_stored_in_ft3
 
   default_scope -> { order(:updated_at).reverse_order }
 
@@ -53,30 +53,38 @@ class HouseholdItem < ApplicationRecord
     self.tags.map(&:name).join(", ")
   end
 
-  def volume_m3
-    ft3_to_m3(self.volume)
-  end
-
-  def volume_ft3
-    self.volume
-  end
-
   def volume_in_correct_unit
     case self.moving.unit
     when "metric" then volume_m3
     when "us"     then volume_ft3
-    else volume_ft3
+    else raise "Unknown unit"
     end
+  end
+
+  def volume_subtotal
+    volume_in_correct_unit * quantity
   end
 
   private
 
-    def calculate_volume_using_correct_unit
+    # Returns volume value in m3.
+    def volume_m3
+      ft3_to_m3(self.volume)
+    end
+
+    # Returns volume value in ft3.
+    def volume_ft3
+      self.volume
+    end
+
+    # Standardizes on the ft3 volume for the database.
+    def ensure_volume_stored_in_ft3
       if self.moving.unit == "metric"
         self.volume = m3_to_ft3(self.volume)
       end
     end
 
+    # Standardizes on the lowercase name for the database.
     def downcase_name
       self.name.downcase!
     end

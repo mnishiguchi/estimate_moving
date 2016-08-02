@@ -2,7 +2,7 @@
 
 h1.h2.page-header
   | I have #{pluralize(current_user.movings.count, "moving project")}
-  a.btn.btn-default.add_moving[href="#{new_moving_path}" title="add moving"] 
+  a.btn.btn-default.add_moving.pull-right[href="#{new_moving_path}" title="add moving"] 
     = fa_icon("plus")
   
 - if @movings.count > 0
