@@ -53,6 +53,8 @@ end
 group :development do
   gem 'annotate'
   gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'bullet'
   gem 'listen', '~> 3.0.5'
   gem 'quiet_assets'
   gem 'rails-erd'

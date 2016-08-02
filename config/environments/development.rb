@@ -27,12 +27,23 @@ Rails.application.configure do
   end
 
   # ==> Mailer
+
   config.action_mailer.perform_deliveries    = true
   config.action_mailer.delivery_method       = :test
   config.action_mailer.default_url_options   = { host: 'localhost', port: 3000 }
   config.action_mailer.perform_caching       = false
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   config.action_mailer.raise_delivery_errors = true
+
+  # ==> Bullet
+
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.alert = true
+    Bullet.bullet_logger = true
+    Bullet.console = true
+    Bullet.rails_logger = true
+  end
 
   # The location of the mailer previews directory (default: test/mailers/previews)
   # config.action_mailer.preview_path = "#{Rails.root}/lib/mailer_previews"
