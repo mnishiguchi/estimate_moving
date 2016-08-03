@@ -22,7 +22,7 @@
 require 'rails_helper'
 
 RSpec.describe SocialProfile, type: :model do
-  let(:moving) { FactoryGirl.create(:social_profile) }
+  let(:moving) { create(:social_profile) }
 
   it { expect(moving).to be_valid }
 end

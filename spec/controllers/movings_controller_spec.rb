@@ -4,8 +4,8 @@ RSpec.describe MovingsController, type: :controller do
 
   context "non-logged-in user" do
 
-    let(:user) { FactoryGirl.create(:user) }
-    let(:moving) { user.movings.create(FactoryGirl.attributes_for(:moving)) }
+    let(:user) { create(:user) }
+    let(:moving) { user.movings.create(attributes_for(:moving)) }
 
     # INDEX
     describe "GET /movings" do
@@ -23,7 +23,7 @@ RSpec.describe MovingsController, type: :controller do
 
     # CREATE
     describe "POST /movings" do
-      let(:moving_params) { FactoryGirl.attributes_for(:moving) }
+      let(:moving_params) { attributes_for(:moving) }
 
       it "does not change the Moving count, redirecting to the login page" do
         expect{
@@ -43,7 +43,7 @@ RSpec.describe MovingsController, type: :controller do
 
     # UPDATE
     describe "PATCH /movings/:id" do
-      let(:moving_params) { FactoryGirl.attributes_for(:moving) }
+      let(:moving_params) { attributes_for(:moving) }
 
       it "redirects to the login page" do
         patch :update, id: moving.id, moving: moving_params
@@ -67,7 +67,7 @@ RSpec.describe MovingsController, type: :controller do
     login_user
 
     let(:user) { subject.current_user }
-    let(:moving) { user.movings.create(FactoryGirl.attributes_for(:moving)) }
+    let(:moving) { user.movings.create(attributes_for(:moving)) }
 
     # INDEX
     describe "GET /movings" do
@@ -87,7 +87,7 @@ RSpec.describe MovingsController, type: :controller do
     describe "POST /movings" do
       it "increments the Moving count" do
         expect{
-          user.movings.create(FactoryGirl.attributes_for(:moving))
+          user.movings.create(attributes_for(:moving))
         }.to change(Moving, :count).by(1)
       end
     end
@@ -102,7 +102,7 @@ RSpec.describe MovingsController, type: :controller do
     # UPDATE
     describe "PATCH /movings/:id" do
       let(:moving_params) do
-        FactoryGirl.attributes_for(:moving)
+        attributes_for(:moving)
           .merge(name: "new name", description: "new description")
       end
 
@@ -117,7 +117,7 @@ RSpec.describe MovingsController, type: :controller do
     # DESTROY
     describe "DELETE /movings/:id" do
       before(:each) do
-        user.movings.create(FactoryGirl.attributes_for(:moving))
+        user.movings.create(attributes_for(:moving))
       end
       it "decrements the moving count" do
         expect{

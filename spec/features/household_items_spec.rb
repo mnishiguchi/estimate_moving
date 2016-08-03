@@ -3,7 +3,7 @@ require "features/shared/contexts"
 
 RSpec.feature "Household items page", type: :feature do
 
-  include_context "User logs into dashboard"
+  include_context "Returned user logs into dashboard"
 
   before(:each) { click_link moving.name }
 

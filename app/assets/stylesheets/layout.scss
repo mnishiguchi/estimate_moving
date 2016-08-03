@@ -140,6 +140,11 @@ footer {
   background-color: $jumbotron-background;
 }
 
+.admin_form {
+  border: 4px solid $red;
+  padding: 0 1rem; 
+}
+
 // Override BS3.
 .btn {
   border-radius: 1px;

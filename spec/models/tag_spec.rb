@@ -11,7 +11,7 @@
 require 'rails_helper'
 
 RSpec.describe Tag, type: :model do
-  let(:tag) { FactoryGirl.create(:tag) }
+  let(:tag) { create(:tag) }
 
   it { expect(tag).to be_valid }
   it { is_expected.to validate_presence_of :name }

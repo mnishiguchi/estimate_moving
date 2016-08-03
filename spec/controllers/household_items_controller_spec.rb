@@ -5,10 +5,10 @@ RSpec.describe HouseholdItemsController, type: :controller do
   context "non-logged-in user" do
 
     let!(:moving) do
-      user = FactoryGirl.create(:user)
-      moving = user.movings.create(FactoryGirl.attributes_for(:moving))
+      user = create(:user)
+      moving = user.movings.create(attributes_for(:moving))
       5.times do
-        moving.household_items.create(FactoryGirl.attributes_for(:household_item))
+        moving.household_items.create(attributes_for(:household_item))
       end
 
       moving
@@ -30,7 +30,7 @@ RSpec.describe HouseholdItemsController, type: :controller do
 
     # CREATE
     describe "POST /movings/:moving_id/household_items" do
-      let(:household_item_params) { FactoryGirl.attributes_for(:household_item) }
+      let(:household_item_params) { attributes_for(:household_item) }
 
       subject do
         lambda { post :create, moving_id:      moving.id,
@@ -57,7 +57,7 @@ RSpec.describe HouseholdItemsController, type: :controller do
 
     # UPDATE
     describe "PATCH /movings/:moving_id/household_items/:id" do
-      let(:household_item_params) { FactoryGirl.attributes_for(:household_item) }
+      let(:household_item_params) { attributes_for(:household_item) }
 
       subject do
         id = moving.household_items.first.id
@@ -87,14 +87,14 @@ RSpec.describe HouseholdItemsController, type: :controller do
   context "logged-in user, accessing his/her own item" do
 
     # Create a user and log him/her in.
-    let!(:user)   { FactoryGirl.create(:user) }
+    let!(:user)   { create(:user) }
     login_user # Defined in `spec/support/controller_macros.rb`
 
     # Create items on that user.
     let!(:moving) do
-      moving = subject.current_user.movings.create(FactoryGirl.attributes_for(:moving))
+      moving = subject.current_user.movings.create(attributes_for(:moving))
       5.times do
-        moving.household_items.create(FactoryGirl.attributes_for(:household_item))
+        moving.household_items.create(attributes_for(:household_item))
       end
 
       return moving
@@ -116,7 +116,7 @@ RSpec.describe HouseholdItemsController, type: :controller do
 
     # CREATE
     # describe "POST /movings/:moving_id/household_items" do
-    #   let(:household_item_params) { FactoryGirl.attributes_for(:household_item) }
+    #   let(:household_item_params) { attributes_for(:household_item) }
     #
     #   it "increments the HouseholdItem count, then redirects to the show page" do
     #     expect{
@@ -138,7 +138,7 @@ RSpec.describe HouseholdItemsController, type: :controller do
     # UPDATE
     describe "PATCH /movings/:moving_id/household_items/:id" do
       let!(:household_item_params) do
-        household_item_params = FactoryGirl.attributes_for(:household_item)
+        household_item_params = attributes_for(:household_item)
         household_item_params[:name]        = "floor lamp"
         household_item_params[:description] = "breakable treat with care!"
         household_item_params
@@ -159,7 +159,7 @@ RSpec.describe HouseholdItemsController, type: :controller do
     # describe "DELETE /movings/:moving_id/household_items/:id" do
     #   before(:each) do
     #     user = subject.current_user
-    #     moving = user.movings.create(FactoryGirl.attributes_for(:moving))
+    #     moving = user.movings.create(attributes_for(:moving))
     #   end
     #
     #   it "decrements the HouseholdItem count, then redirects to the movings page" do

@@ -15,10 +15,10 @@
 require 'rails_helper'
 
 RSpec.describe HouseholdItem, type: :model do
-  let(:household_item) { FactoryGirl.create(:household_item) }
+  let(:household_item) { create(:household_item) }
 
   it { expect(household_item).to be_valid }
-  
+
   it { is_expected.to validate_presence_of :name }
   it { is_expected.to validate_presence_of :volume }
   it { is_expected.to validate_numericality_of :volume }

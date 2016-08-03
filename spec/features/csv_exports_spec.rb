@@ -5,13 +5,13 @@ RSpec.describe HouseholdItemsController, type: :controller do
   context "non-logged-in user" do
 
     # Create a user.
-    let!(:user)   { FactoryGirl.create(:user) }
+    let!(:user)   { create(:user) }
 
     # Create items on the other user.
     let!(:moving) do
-      moving = FactoryGirl.create(:user).movings.create(FactoryGirl.attributes_for(:moving))
+      moving = create(:user).movings.create(attributes_for(:moving))
       5.times do
-        moving.household_items.create(FactoryGirl.attributes_for(:household_item))
+        moving.household_items.create(attributes_for(:household_item))
       end
 
       return moving
@@ -27,16 +27,16 @@ RSpec.describe HouseholdItemsController, type: :controller do
   context "logged-in user" do
 
     # Create a user.
-    let!(:user)   { FactoryGirl.create(:user) }
+    let!(:user)   { create(:user) }
 
     # Log that user in.
     login_user # Defined in `spec/support/controller_macros.rb`
 
     # Create items on that user.
     let!(:moving) do
-      moving = subject.current_user.movings.create(FactoryGirl.attributes_for(:moving))
+      moving = subject.current_user.movings.create(attributes_for(:moving))
       5.times do
-        moving.household_items.create(FactoryGirl.attributes_for(:household_item))
+        moving.household_items.create(attributes_for(:household_item))
       end
 
       return moving

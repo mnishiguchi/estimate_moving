@@ -14,7 +14,7 @@
 require 'rails_helper'
 
 RSpec.describe Moving, type: :model do
-  let(:moving) { FactoryGirl.create(:moving) }
+  let(:moving) { create(:moving) }
 
   it { expect(moving).to be_valid }
 

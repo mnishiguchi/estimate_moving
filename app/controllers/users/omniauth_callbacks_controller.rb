@@ -1,4 +1,4 @@
-class OmniauthCallbacksController < Devise::OmniauthCallbacksController
+class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   # Invoked after omniauth authentication is done.
   # This method can handle authentication for all the providers.

@@ -1,0 +1,15 @@
+= provide(:title, "Admin log in")
+
+.row
+  .col-sm-offset-3.col-sm-6
+
+    .admin_form
+      h2
+        | Admin log in
+      = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        .form-inputs
+          = f.input :email, required: false, autofocus: true
+          = f.input :password, required: false
+        .form-group
+          .btn-group
+            = f.button :submit, "Log in", class: "btn btn-default"

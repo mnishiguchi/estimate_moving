@@ -26,7 +26,7 @@ class User < ApplicationRecord
   has_many :movings, dependent: :destroy
   has_many :social_profiles, dependent: :destroy
 
-  # deviseモジュールの設定
+  # Include devise modules.
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
          :trackable, :validatable, :confirmable, :omniauthable
 

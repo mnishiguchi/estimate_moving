@@ -1,10 +1,11 @@
 require 'rails_helper'
+require "features/shared/contexts"
 require "features/shared/examples"
 
 RSpec.feature "Home page", type: :feature do
 
   # Create a user.
-  let!(:user) { FactoryGirl.create(:user) }
+  let!(:user) { create(:user) }
 
   context "non-logged-in user" do
     describe "visiting root page" do
@@ -22,17 +23,21 @@ RSpec.feature "Home page", type: :feature do
     before do
       # Create three movings on the user.
       3.times do
-        user.movings.create(FactoryGirl.attributes_for(:moving))
+        user.movings.create(attributes_for(:moving))
       end
 
-      # Log in and visit the root path.
-      login_as user
-      visit root_path
+      # # Log in and visit the root path.
+      # login_as user, scope: :user
+      #
+      # # Visit the root path.
+      # visit root_path
     end
+
+    include_context "New user logs into dashboard"
 
     subject { page }
 
-    scenario "shows movings/index page" do
+    it "shows movings/index page" do
       is_expected.to have_title(full_title("My moving projects"))
       is_expected.to have_selector('.gravatar')
       is_expected.to have_content(/\d moving[s]? projects/)
