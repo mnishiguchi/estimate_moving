@@ -1,0 +1,2 @@
+class DefaultVolume < ApplicationRecord
+end
