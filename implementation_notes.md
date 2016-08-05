@@ -134,3 +134,33 @@ http://localhost:3000/movings/1/household_items?type=Hello
 
 #### ActiveRecord/Store vs PostgreSQL json vs PostgreSQL hstore
 - [ActiveRecord/Store](http://api.rubyonrails.org/classes/ActiveRecord/Store.html)
+
+#### ActiveRecord - converting a query result hash
+
+Create an array of hashes
+
+```rb
+DefaultVolume.all.map(&:attributes)
+```
+
+Create a hash from an array of key-value arrays
+
+```rb
+Hash[DefaultVolume.pluck(:name, :volume)]
+```
+
+```rb
+DefaultVolume.pluck(:name, :volume).to_h
+```
+
+#### Load seed file in test
+
+```rb
+load "#{Rails.root}/db/seeds.rb"
+```
+
+or
+
+```rb
+Rails.application.load_seed
+```

@@ -18,9 +18,13 @@
           p
             | Currently waiting confirmation for: 
             = resource.unconfirmed_email
-        = f.input :password, autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false
-        = f.input :password_confirmation, required: false
-        = f.input :current_password, hint: "we need your current password to confirm your changes", required: true
+            
+        -# If user do not have a password, it means this user is 
+        -# registered with a social account. So password is irrelevant.
+        - if current_user.password.present?
+          = f.input :password, autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false
+          = f.input :password_confirmation, required: false
+          = f.input :current_password, hint: "we need your current password to confirm your changes", required: true
       .form-group
         = f.button :submit, "Update"
     

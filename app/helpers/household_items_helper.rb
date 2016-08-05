@@ -7,18 +7,17 @@ module HouseholdItemsHelper
   # A JSON of name-volume pairs in an appropriate unit according to the moving.
   def item_volume_json(moving)
 
-    # Read a file.
-    # items_json = File.read(File.dirname(__FILE__) + '/household_items.json')
-    # items_json = File.read("#{Rails.root}/config/household_items.json")
-    ft3_hash = YAML.load_file("#{Rails.root}/config/household_items.yml")
+    # Read data from default_volumes table. (Unit: us, ft3)
+    @default_volumes ||= DefaultVolume.pluck(:name, :volume)
 
-    # Convert volumes to an appropriate unit.
+    # 1. Convert the volumes in the array to an appropriate unit.
+    # 2. Convert the array to a hash.
+    # 3. Convert the hash to json.
     case moving.unit
-    when "us" then ft3_hash.to_json
+    when "us"
+      @default_volumes.to_h.to_json
     when "metric"
-      m3_json = ft3_hash.map do |name, volume|
-        [ name, ft3_to_m3(volume) ]
-      end.to_h.to_json
+      @default_volumes.map { |name, volume| [name, ft3_to_m3(volume)] }.to_h.to_json
     else
       raise 'Invalid unit'
     end
@@ -42,6 +41,9 @@ module HouseholdItemsHelper
     names, values = data_pairs.transpose
 
     # Return a json object that contains two arrays.
-    { names: names, values: values }.to_json
+    {
+      names: names,
+      values: values
+    }.to_json
   end
 end

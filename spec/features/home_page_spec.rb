@@ -20,32 +20,19 @@ RSpec.feature "Home page", type: :feature do
   end
 
   context "when logged in" do
-    before do
-      # Create three movings on the user.
-      3.times do
-        user.movings.create(attributes_for(:moving))
-      end
-
-      # # Log in and visit the root path.
-      # login_as user, scope: :user
-      #
-      # # Visit the root path.
-      # visit root_path
-    end
-
-    include_context "New user logs into dashboard"
+    include_context "Returned user logs into dashboard"
 
     subject { page }
 
     it "shows movings/index page" do
       is_expected.to have_title(full_title("My moving projects"))
       is_expected.to have_selector('.gravatar')
-      is_expected.to have_content(/\d moving[s]? projects/)
+      is_expected.to have_content(/\d moving project[s]?/)
       is_expected.to have_content("Logged in as #{user.username}")
-      is_expected.to have_selector('.moving', count: 3 )
+      is_expected.to have_selector('.moving')
     end
 
-    it "has a list of household items" do
+    it "has a list of movings" do
       within(".moving:first-child") do
         first_moving = user.movings.first
         is_expected.to have_link(first_moving.name, moving_household_items_path(first_moving))
