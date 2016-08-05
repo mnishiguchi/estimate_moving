@@ -114,7 +114,6 @@ redirect_to moving_url(@moving, anchor: 'add_item')
 
 #### Adding custom params to query string in a form
 
-
 ```slim
 = simple_form_for([moving, household_item], :url => { :type => "Hello" } ...
 ```
@@ -123,17 +122,6 @@ redirect_to moving_url(@moving, anchor: 'add_item')
 http://localhost:3000/movings/1/household_items?type=Hello
 ```
 
-#### jQuery ui-autocomplete
-
-- [https://github.com/joliss/jquery-ui-rails](https://github.com/joliss/jquery-ui-rails)
-- [https://jqueryui.com/autocomplete/](https://jqueryui.com/autocomplete/)
-
-
-#### Charts/graphs
-
-- [http://www.highcharts.com/](http://www.highcharts.com/)
-
-####   [ActiveRecord::Enum](http://edgeapi.rubyonrails.org/classes/ActiveRecord/Enum.html)
 
 #### Modal data is not updated after create/updated
 - Check `strong params` whitelist.
@@ -146,9 +134,3 @@ http://localhost:3000/movings/1/household_items?type=Hello
 
 #### ActiveRecord/Store vs PostgreSQL json vs PostgreSQL hstore
 - [ActiveRecord/Store](http://api.rubyonrails.org/classes/ActiveRecord/Store.html)
-
-#### Simple vanilla JS implementation of list searching
-- [List.js](http://www.listjs.com/)
-
-#### RSpec examples
-- https://github.com/shakacode/react-webpack-rails-tutorial/tree/master/spec
