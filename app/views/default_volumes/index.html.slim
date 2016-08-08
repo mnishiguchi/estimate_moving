@@ -1,0 +1,25 @@
+- provide(:title, "Default volumes")
+
+h1 Listing default_volumes
+
+table.table.table-striped
+  thead
+    tr
+      th Name
+      th Volume
+      th
+      th
+      th
+
+  tbody
+    - @default_volumes.each do |default_volume|
+      tr
+        td = default_volume.name
+        td = default_volume.volume
+        td = link_to 'Show', default_volume
+        td = link_to 'Edit', edit_default_volume_path(default_volume)
+        td = link_to 'Destroy', default_volume, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Default volume', new_default_volume_path

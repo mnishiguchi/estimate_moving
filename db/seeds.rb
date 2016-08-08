@@ -20,6 +20,17 @@ User.destroy_all
 # Obtain a hash of item name to default volume.
 ft3_hash = YAML.load_file("#{Rails.root}/db/default_volumes.yml")
 
+# Set default volumes to the default_volumes table.
+ft3_hash.each do |name, volume|
+  DefaultVolume.create!({ name: name, volume: volume })
+end
+
+# Create an admin.
+Admin.create!(
+  email:    "admin@example.com",
+  password: "longpassword"
+)
+
 # Create sample users.
 example_user = User.create!(
   username: "Example user",
@@ -45,7 +56,7 @@ example_user.movings.create!(
 # For a Create items on a moving project.
 item_names = ft3_hash.keys
 User.order(:created_at).take(1).each do |user|
-  moving   = user.movings.first
+  moving = user.movings.first
   30.times do
     name     = item_names.sample
     volume   = ft3_hash[name]
@@ -62,10 +73,5 @@ User.order(:created_at).take(1).each do |user|
   tag_names = ["kitchen", "living room", "bed room", "bathroom", "closet"]
   moving.household_items.each do |item|
     item.all_tags = tag_names.sample
-  end
-
-  # Set default volumes to the default_volumes table.
-  ft3_hash.each do |name, volume|
-    DefaultVolume.create!({ name: name, volume: volume })
   end
 end

@@ -1,0 +1,12 @@
+.jumbotron
+  .h1 
+    = fa_icon("home")
+    = fa_icon("truck")
+    ' &nbsp;
+  .h3
+    ' Please
+    = link_to "sign up", new_user_registration_path
+    | ,&nbsp;
+    = link_to "log in", new_user_session_path
+    |  or ... 
+  .h3= render 'shared/omniauth_buttons', text: { twitter: "Log in with Twitter" }

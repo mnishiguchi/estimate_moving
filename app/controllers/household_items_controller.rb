@@ -17,7 +17,8 @@ class HouseholdItemsController < ApplicationController
         @data = json_for_bar_chart(@moving)
       end
       format.csv do
-        MovingCsv.new(@moving, self).send_data
+        csv = MovingCsv.new(@moving)
+        send_data csv.data, csv.config
       end
     end
   end

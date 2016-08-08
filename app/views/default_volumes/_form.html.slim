@@ -1,0 +1,9 @@
+= simple_form_for(@default_volume) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :volume
+    = f.input :name
+
+  .form-actions
+    = f.button :submit

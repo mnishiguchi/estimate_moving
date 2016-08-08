@@ -1,4 +1,11 @@
-- if user_signed_in?
+- if admin_signed_in?
+  nav.navbar.navbar-inverse.navbar-static-top
+    .container
+      .flex
+        = render 'layouts/logo'
+        = render 'layouts/admin_dropdown'
+        
+- elsif user_signed_in?
   nav.navbar.navbar-inverse.navbar-static-top
     .container
       .flex
@@ -19,8 +26,7 @@
 
       nav.collapse.navbar-collapse#hamburger
         ul.nav.navbar-nav.navbar-right
-          - unless user_signed_in?
-            li= link_to "Home",  root_path
-            li= link_to "About", about_path
-            li= link_to "Sign up", new_user_registration_path
-            li= link_to "Log in", new_user_session_path
+          li= link_to "Home",  root_path
+          li= link_to "About", about_path
+          li= link_to "Sign up", new_user_registration_path
+          li= link_to "Log in", new_user_session_path

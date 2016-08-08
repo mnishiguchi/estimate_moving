@@ -1,18 +1,4 @@
 - if admin_signed_in?
-  .h1
-    | This is the admin page
-    
-  = link_to "Admin log out", destroy_admin_session_path, method: :delete, class: "btn btn-default"  
+  = render 'home_admin'
 - else
-  .jumbotron
-    .h1 
-      = fa_icon("home")
-      = fa_icon("truck")
-      ' &nbsp;
-    .h3
-      ' Please
-      = link_to "sign up", new_user_registration_path
-      | ,&nbsp;
-      = link_to "log in", new_user_session_path
-      |  or ... 
-    .h3= render 'shared/omniauth_buttons', text: { twitter: "Log in with Twitter" }
+  = render 'home_user'

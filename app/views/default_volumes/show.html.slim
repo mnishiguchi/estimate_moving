@@ -1,0 +1,12 @@
+p#notice = notice
+
+p
+  strong Volume:
+  = @default_volume.volume
+p
+  strong Name:
+  = @default_volume.name
+
+= link_to 'Edit', edit_default_volume_path(@default_volume)
+'|
+= link_to 'Back', default_volumes_path

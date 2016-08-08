@@ -3,6 +3,10 @@ Rails.application.routes.draw do
   root "static_pages#home"
   get "/about" => "static_pages#about"
 
+  scope :admin do
+    resources :default_volumes
+  end
+
   devise_for :admins, controllers: {
     sessions:           "admins/sessions"
   }

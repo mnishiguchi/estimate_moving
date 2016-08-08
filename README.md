@@ -67,3 +67,6 @@ $ rails s
 #### jQuery ui-autocomplete
 - [https://github.com/joliss/jquery-ui-rails](https://github.com/joliss/jquery-ui-rails)
 - [https://jqueryui.com/autocomplete/](https://jqueryui.com/autocomplete/)
+
+#### Rails routes - namespace vs scope
+- [http://qiita.com/srockstyle/items/5b0bf6fe2a78e1aa7363](http://qiita.com/srockstyle/items/5b0bf6fe2a78e1aa7363)
