@@ -34,7 +34,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       set_flash_message(:notice, :success, kind: provider.capitalize) if is_navigational_format?
     else
       @user.reset_confirmation!
-      flash[:warning] = "Please add your email address before proceeding."
+      flash[:warning] = "Please enter your email address before proceeding."
       redirect_to finish_signup_path(@user)
     end
   end

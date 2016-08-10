@@ -136,24 +136,23 @@ footer {
   }
 }
 
-.jumbotron {
-  background-color: $jumbotron-background;
-}
-
 .admin_form {
   border: 4px solid $red;
-  padding: 0 1rem; 
+  padding: 0 1rem;
 }
 
+//
 // Override BS3.
-.btn {
-  border-radius: 1px;
-  .btn-primary {
-    color: #fff;
-    background-color: $blue-darker;
-    border-color: $blue-darker;
-  }
+//
+.container .jumbotron {
+  background-color: $gray-1;
+  border-radius: 0;
 }
+
+.alert {
+  border-radius: 0;
+}
+
 .form-horizontal .form-group {
   margin-left: 0;
   margin-right: 0;

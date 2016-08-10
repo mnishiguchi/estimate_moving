@@ -12,8 +12,8 @@
         = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
       .form-group
         .btn-group
-          = f.button :submit, "Log in, or ...", class: "btn btn-default", title: "Log in"
+          = f.button :submit, "Log in, or ...", class: "btn btn-primary outline login_submit", title: "Log in"
           = render 'shared/omniauth_buttons', text: { twitter: "Log in with Twitter" }
           
     .form-group
-      = render "devise/shared/links"
+      = render "users/shared/links"

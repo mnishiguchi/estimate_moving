@@ -1,0 +1,14 @@
+.signup_submit, .login_submit {
+  margin-right: 1rem;
+}
+
+.btn-omniauth-twitter {
+  color: #fff;
+  background-color: $twitter;
+  border-color: #46b8da;
+  &:hover {
+    color: #fff;
+    background-color: #31b0d5;
+    border-color: #269abc;
+  }
+}

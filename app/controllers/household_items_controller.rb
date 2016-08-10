@@ -11,7 +11,6 @@ class HouseholdItemsController < ApplicationController
 
   # Show all the items of a moving project that belongs to current user.
   def index
-
     respond_to do |format|
       format.html do
         @data = json_for_bar_chart(@moving)

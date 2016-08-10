@@ -3,7 +3,7 @@ require 'rails_helper'
 feature "OmniAuth interface" do
   OmniAuth.config.test_mode = true
 
-  let(:omniauth_twitter_button) { ".omniauth-btn-twitter" }
+  let(:omniauth_twitter_button) { ".btn-omniauth-twitter" }
 
   before { OmniAuth.config.mock_auth[:twitter] = nil }
 
@@ -26,11 +26,11 @@ feature "OmniAuth interface" do
         find(omniauth_twitter_button).click
       end
 
-      it { expect(page).to have_content("Please add your email address") }
+      it { expect(page).to have_content("Please enter your email address") }
 
       describe "filling out the form" do
 
-        let(:submit) { "Add email" }
+        let(:submit) { "Send confirmation email" }
 
         context "with temporary email" do
           before do

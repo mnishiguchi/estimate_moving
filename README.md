@@ -70,3 +70,6 @@ $ rails s
 
 #### Rails routes - namespace vs scope
 - [http://qiita.com/srockstyle/items/5b0bf6fe2a78e1aa7363](http://qiita.com/srockstyle/items/5b0bf6fe2a78e1aa7363)
+
+#### Customizing BS3 buttons
+- [https://bootstrapbay.com/blog/bootstrap-button-styles/](https://bootstrapbay.com/blog/bootstrap-button-styles/)

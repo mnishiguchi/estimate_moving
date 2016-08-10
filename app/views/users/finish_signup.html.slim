@@ -7,7 +7,7 @@
       = simple_form_for(@user, url: finish_signup_path(@user)) do |f|
         = f.input :email, autofocus: true, class: 'form-control'
         .form-group
-          = f.submit 'Add email', class: 'btn btn-primary'
+          = f.submit 'Send confirmation email', class: 'btn btn-primary'
 
 javascript:
   // Clear the temp email.
