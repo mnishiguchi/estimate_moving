@@ -12,7 +12,12 @@
 require 'test_helper'
 
 class DefaultVolumeTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+
+  def setup
+    @desk = create(:default_volume)
+  end
+
+  test "should be valid" do
+    assert @desk.valid?
+  end
 end

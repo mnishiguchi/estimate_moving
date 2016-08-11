@@ -73,3 +73,8 @@ $ rails s
 
 #### Customizing BS3 buttons
 - [https://bootstrapbay.com/blog/bootstrap-button-styles/](https://bootstrapbay.com/blog/bootstrap-button-styles/)
+
+#### Minitest
+- [How I test Rails apps with Minitest, Capybara, and Guard](https://medium.com/@heidar/how-i-test-rails-apps-with-minitest-capybara-and-guard-5e07a6856781#.cwfpp7u7r)
+- [minitestのオススメ基本設定調べてみた](http://qiita.com/baban@github/items/88e18a784eaf39efb6e0)
+- [minitestのオススメ設定調べてみた(アサーション編)](http://qiita.com/baban@github/items/a43b66f29a7d1c52ab63)

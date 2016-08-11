@@ -36,10 +36,8 @@ gem 'uglifier', '>= 1.3.0'
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
-  # Autoloads dotenv in Rails.
   gem 'dotenv-rails'
   gem 'factory_girl_rails'
-  gem 'guard-rspec'
   gem 'pry'
   gem 'pry-doc'
   gem 'pry-rails'
@@ -65,21 +63,14 @@ group :development do
 end
 
 group :test do
-  gem 'capybara'
   gem 'capybara-screenshot'
-  gem 'capybara-webkit'
-  gem 'chromedriver-helper'
-  gem 'database_cleaner'
-  gem 'generator_spec'
-  # gem 'fuubar'
-  gem 'json_spec'
-  gem 'launchy'
-  gem 'poltergeist'
-  gem 'rails-controller-testing'
-  gem 'rspec-rails'
-  gem 'rspec-retry'
-  gem 'selenium-webdriver'
-  gem 'shoulda-matchers'
+  gem 'guard-minitest'
+  gem 'mini_backtrace'
+  # gem 'minitest'
+  # gem 'minitest-rails'
+  # gem 'minitest-rails-capybara', '~> 3.0' # NOTE: Error is raised on bundle update
+  gem 'minitest-reporters'
+  gem 'simplecov', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

@@ -11,7 +11,7 @@
 
 FactoryGirl.define do
   factory :default_volume do
-    volume 1.5
-    name "MyString"
+    volume 3.5
+    name "desk"
   end
 end
