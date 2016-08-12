@@ -45,7 +45,7 @@ class HouseholdItemsController < ApplicationController
   def update
     if @household_item.update(household_item_params)
       flash[:success] = "Item updated"
-      redirect_to @moving
+      redirect_to moving_household_items_url @moving
     else
       render :edit
     end

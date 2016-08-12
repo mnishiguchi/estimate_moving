@@ -70,6 +70,7 @@ group :test do
   # gem 'minitest-rails'
   # gem 'minitest-rails-capybara', '~> 3.0' # NOTE: Error is raised on bundle update
   gem 'minitest-reporters'
+  gem 'rails-controller-testing'
   gem 'simplecov', require: false
 end
 

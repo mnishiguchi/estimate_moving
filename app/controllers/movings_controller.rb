@@ -45,7 +45,7 @@ class MovingsController < ApplicationController
   def destroy
     @moving.destroy
     flash[:success] = "Moving deleted"
-    redirect_to root_url
+    redirect_to movings_url
   end
 
   private

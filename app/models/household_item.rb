@@ -22,7 +22,7 @@ class HouseholdItem < ApplicationRecord
   validates :volume, presence: true, numericality: { greater_than: 0 }
   validates :quantity, presence: true, numericality: { only_integer: true, greater_than: 0 }
 
-  before_save :downcase_name  # Standardizes on all lower-case words.
+  # before_save :downcase_name  # Standardizes on all lower-case words.
   before_save :ensure_volume_stored_in_ft3
 
   default_scope -> { order(:updated_at).reverse_order }
@@ -85,7 +85,7 @@ class HouseholdItem < ApplicationRecord
     end
 
     # Standardizes on the lowercase name for the database.
-    def downcase_name
-      self.name.downcase!
-    end
+    # def downcase_name
+    #   self.name.downcase!
+    # end
 end
