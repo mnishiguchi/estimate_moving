@@ -2,7 +2,7 @@ require 'test_helper'
 
 class DefaultVolumesControllerTest < ActionDispatch::IntegrationTest
   def setup
-    @default_volume = FactoryGirl.create(:default_volume)
+    @default_volume = create(:default_volume)
   end
 
   # NOTE: Only admin user can access DefaultVolumes therefore in this test
