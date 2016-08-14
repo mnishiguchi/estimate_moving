@@ -164,3 +164,8 @@ or
 ```rb
 Rails.application.load_seed
 ```
+
+#### Problems I had when setting up minitest-rails-capybara
+- could not install minitest-rails-capybara due to conflict with quiet_assets
+- error raised due to conflict with minitest-reporters
+  + https://github.com/kern/minitest-reporters/issues/142

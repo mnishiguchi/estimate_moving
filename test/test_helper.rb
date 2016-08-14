@@ -2,9 +2,18 @@ ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 
-# The bar chart for tests.
+# minitest-reporters
+# https://github.com/kern/minitest-reporters#caveats
 require "minitest/reporters"
-Minitest::Reporters.use!
+Minitest::Reporters.use!(
+  Minitest::Reporters::DefaultReporter.new,
+  ENV,
+  Minitest.backtrace_filter
+)
+
+# Capybara
+require 'minitest/rails/capybara'
+require 'capybara-screenshot/minitest'
 
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.

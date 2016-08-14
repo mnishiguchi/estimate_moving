@@ -73,5 +73,8 @@ $ rails s
 
 #### Minitest
 - [How I test Rails apps with Minitest, Capybara, and Guard](https://medium.com/@heidar/how-i-test-rails-apps-with-minitest-capybara-and-guard-5e07a6856781#.cwfpp7u7r)
-- [how-to-test-rails-models-with-minitest](https://semaphoreci.com/community/tutorials/how-to-test-rails-models-with-minitest)- [minitestのオススメ設定調べてみた(アサーション編)](http://qiita.com/baban@github/items/a43b66f29a7d1c52ab63)
+- [how-to-test-rails-models-with-minitest](https://semaphoreci.com/community/tutorials/how-to-test-rails-models-with-minitest)
+- [minitestのオススメ設定調べてみた(アサーション編)](http://qiita.com/baban@github/items/a43b66f29a7d1c52ab63)
 - [minitestのオススメ基本設定調べてみた](http://qiita.com/baban@github/items/88e18a784eaf39efb6e0)
+- [minitest-rails-capybara](http://blowmage.com/minitest-rails-capybara/)
+- [minitest-power_assert](https://github.com/hsbt/minitest-power_assert)

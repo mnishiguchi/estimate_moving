@@ -6,8 +6,8 @@ gem 'puma', '~> 3.0'
 
 gem 'awesome_print'
 gem 'bootstrap-sass'
-gem 'coffee-rails', '~> 4.1.0'
-gem 'devise', '~> 4.2.0'
+gem 'coffee-rails'
+gem 'devise'
 gem 'ffaker'
 gem 'font-awesome-rails'
 gem 'jbuilder', '~> 2.5'
@@ -15,7 +15,7 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 # gem 'kaminari', git: 'git://github.com/amatsuda/kaminari.git', branch: 'master'
 gem 'omniauth', '~> 1.3', '>= 1.3.1'
-gem 'omniauth-facebook', '~> 3.0'
+# gem 'omniauth-facebook', '~> 3.0'
 gem 'omniauth-twitter', '~> 1.2', '>= 1.2.1'
 gem 'sass-rails', '~> 5.0'
 gem 'simple_form', github: 'kesha-antonov/simple_form', branch: 'rails-5-0'
@@ -55,7 +55,7 @@ group :development do
   gem 'bullet'
   gem 'letter_opener_web'
   gem 'listen', '~> 3.0.5'
-  gem 'quiet_assets'
+  # gem 'quiet_assets' # Conflict with minitest-rails-capybara
   gem 'rails-erd'
   gem 'spring' # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring-watcher-listen', '~> 2.0.0'
@@ -64,11 +64,11 @@ end
 
 group :test do
   gem 'capybara-screenshot'
+  gem 'guard'
   gem 'guard-minitest'
-  gem 'mini_backtrace'
-  # gem 'minitest'
-  # gem 'minitest-rails'
-  # gem 'minitest-rails-capybara', '~> 3.0' # NOTE: Error is raised on bundle update
+  gem 'mini_backtrace' # NoMethodError: undefined method `backtrace_cleaner' for Minitest::Rails:Module
+  gem 'minitest-power_assert'
+  gem 'minitest-rails-capybara'
   gem 'minitest-reporters'
   gem 'rails-controller-testing'
   gem 'simplecov', require: false
